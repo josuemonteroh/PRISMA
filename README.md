@@ -14,10 +14,10 @@ Diseñar e implementar una base de datos relacional que permita gestionar inform
 
 ## Integrantes
 
+- Antony Mora Castro
 - Emmanuel Rivera Cordero
-- Matías Camacho Santamaría
-- Amora
 - Josué David Montero Hernández
+- Matías Camacho Santamaría
 
 ## Estructura del repositorio
 
