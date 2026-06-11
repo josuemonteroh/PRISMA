@@ -25,12 +25,28 @@ Diseñar e implementar una base de datos relacional que permita gestionar inform
 - `database/` → Diagramas relacionales y scripts SQL.
 - `app/` → Código fuente de la aplicación.
 
-## Tecnologías
+## Arquitectura de la solución
 
-- Oracle Database
-- SQL
-- PL/SQL
-- Lenguaje de conexión: por definir por el equipo.
+```text
+Usuario
+   ↓
+HTML + CSS + Bootstrap
+   ↓
+PHP
+   ↓
+Oracle Database
+   ↓
+SQL + PL/SQL
+```
+
+## Tecnologías utilizadas
+
+| Componente | Tecnología |
+|------------|------------|
+| Frontend | HTML5, CSS3, Bootstrap |
+| Backend | PHP |
+| Base de datos | Oracle Database |
+| Lenguajes de BD | SQL y PL/SQL |
 
 ## Estado del proyecto
 
