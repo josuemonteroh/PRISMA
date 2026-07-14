@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>PRISMA | Consultas</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="../assets/css/reset.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/variables.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/style.css">
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <img
+                src="../assets/img/logo.png"
+                alt="PRISMA">
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="pacientes.html">
+
+                <i class="fa-solid fa-user-group"></i>
+
+                Pacientes
+
+            </a>
+
+            <a href="medicos.html">
+
+                <i class="fa-solid fa-user-doctor"></i>
+
+                Médicos
+
+            </a>
+
+            <a href="citas.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Citas
+
+            </a>
+
+            <a
+                href="consultas.html"
+                class="active">
+
+                <i class="fa-solid fa-stethoscope"></i>
+
+                Consultas
+
+            </a>
+
+            <a href="tratamientos.html">
+
+                <i class="fa-solid fa-notes-medical"></i>
+
+                Tratamientos
+
+            </a>
+
+            <a href="medicamentos.html">
+
+                <i class="fa-solid fa-pills"></i>
+
+                Medicamentos
+
+            </a>
+
+            <a href="usuarios.html">
+
+                <i class="fa-solid fa-users"></i>
+
+                Usuarios
+
+            </a>
+
+            <a href="reportes.html">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reportes
+
+            </a>
+
+            <a href="configuracion.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Configuración
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <a href="../login.html">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar sesión
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-title">
+
+                <h1>
+
+                    Consultas
+
+                </h1>
+
+                <p>
+
+                    Registro y seguimiento de consultas médicas.
+
+                </p>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                </button>
+
+                <div class="user-profile">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <div>
+
+                        <strong>
+
+                            Administrador
+
+                        </strong>
+
+                        <small>
+
+                            Administrador General
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+                    <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-title">
+
+                    <h2>
+
+                        Administración de Consultas
+
+                    </h2>
+
+                    <p>
+
+                        Registre, consulte y administre el historial de consultas médicas realizadas.
+
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn btn-primary"
+                    id="btnNuevaConsulta">
+
+                    <i class="fa-solid fa-stethoscope"></i>
+
+                    <span>
+
+                        Nueva Consulta
+
+                    </span>
+
+                </button>
+
+            </section>
+
+            <!-- FILTERS -->
+
+            <section class="filters-card">
+
+                <div class="filter-group">
+
+                    <label for="buscarConsulta">
+
+                        Buscar
+
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="buscarConsulta"
+                            placeholder="Buscar paciente, médico o diagnóstico">
+
+                    </div>
+
+                </div>
+
+                <div class="filter-group">
+
+                    <label for="fechaConsulta">
+
+                        Fecha
+
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fechaConsulta">
+
+                </div>
+
+                <div class="filter-group">
+
+                    <label for="medicoConsulta">
+
+                        Médico
+
+                    </label>
+
+                    <select id="medicoConsulta">
+
+                        <option>
+
+                            Todos
+
+                        </option>
+
+                        <option>
+
+                            Dra. María Gómez
+
+                        </option>
+
+                        <option>
+
+                            Dr. Carlos Castro
+
+                        </option>
+
+                        <option>
+
+                            Dra. Laura Jiménez
+
+                        </option>
+
+                        <option>
+
+                            Dr. José Ramírez
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+            <!-- TABLE -->
+
+            <section class="table-container">
+
+                <div class="table-header">
+
+                    <h2>
+
+                        Consultas Registradas
+
+                    </h2>
+
+                    <span>
+
+                        184 registros
+
+                    </span>
+
+                </div>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Paciente</th>
+
+                            <th>Médico</th>
+
+                            <th>Fecha</th>
+
+                            <th>Diagnóstico</th>
+
+                            <th>Estado</th>
+
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                                            <tr>
+
+                            <td>001</td>
+
+                            <td>Juan Pérez</td>
+
+                            <td>Dra. María Gómez</td>
+
+                            <td>15/07/2026</td>
+
+                            <td>Hipertensión Arterial</td>
+
+                            <td>
+
+                                <span class="status confirmed">
+
+                                    Finalizada
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>002</td>
+
+                            <td>Ana Rojas</td>
+
+                            <td>Dr. Carlos Castro</td>
+
+                            <td>15/07/2026</td>
+
+                            <td>Control General</td>
+
+                            <td>
+
+                                <span class="status scheduled">
+
+                                    En Proceso
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>003</td>
+
+                            <td>Luis Mora</td>
+
+                            <td>Dra. Laura Jiménez</td>
+
+                            <td>16/07/2026</td>
+
+                            <td>Migraña</td>
+
+                            <td>
+
+                                <span class="status attended">
+
+                                    Revisada
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>004</td>
+
+                            <td>Sofía Vargas</td>
+
+                            <td>Dr. José Ramírez</td>
+
+                            <td>16/07/2026</td>
+
+                            <td>Infección Respiratoria</td>
+
+                            <td>
+
+                                <span class="status confirmed">
+
+                                    Finalizada
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>005</td>
+
+                            <td>Carlos León</td>
+
+                            <td>Dra. María Gómez</td>
+
+                            <td>17/07/2026</td>
+
+                            <td>Diabetes Tipo II</td>
+
+                            <td>
+
+                                <span class="status scheduled">
+
+                                    En Proceso
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <!-- PAGINACIÓN -->
+
+            <section class="pagination">
+
+                <button class="btn-secondary">
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </button>
+
+                <span>
+
+                    Página 1 de 8
+
+                </span>
+
+                <button class="btn-secondary">
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+            </section>
+
+            <!-- MODAL -->
+
+            <div
+                class="modal"
+                id="consultationModal">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h2>
+
+                            Nueva Consulta
+
+                        </h2>
+
+                        <button
+                            class="modal-close">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+                    <form
+                        id="consultationForm">
+                    
+                                            <div class="form-grid">
+
+                            <div class="input-group">
+
+                                <label for="paciente">
+
+                                    Paciente
+
+                                </label>
+
+                                <select
+                                    id="paciente"
+                                    required>
+
+                                    <option>
+
+                                        Seleccione un paciente
+
+                                    </option>
+
+                                    <option>
+
+                                        Juan Pérez
+
+                                    </option>
+
+                                    <option>
+
+                                        Ana Rojas
+
+                                    </option>
+
+                                    <option>
+
+                                        Luis Mora
+
+                                    </option>
+
+                                    <option>
+
+                                        Sofía Vargas
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="medico">
+
+                                    Médico
+
+                                </label>
+
+                                <select
+                                    id="medico"
+                                    required>
+
+                                    <option>
+
+                                        Seleccione un médico
+
+                                    </option>
+
+                                    <option>
+
+                                        Dra. María Gómez
+
+                                    </option>
+
+                                    <option>
+
+                                        Dr. Carlos Castro
+
+                                    </option>
+
+                                    <option>
+
+                                        Dra. Laura Jiménez
+
+                                    </option>
+
+                                    <option>
+
+                                        Dr. José Ramírez
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="fecha">
+
+                                    Fecha
+
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="fecha"
+                                    required>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="diagnostico">
+
+                                    Diagnóstico
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-file-medical"></i>
+
+                                    <input
+                                        type="text"
+                                        id="diagnostico"
+                                        placeholder="Diagnóstico principal"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group full-width">
+
+                                <label for="tratamiento">
+
+                                    Tratamiento
+
+                                </label>
+
+                                <textarea
+                                    id="tratamiento"
+                                    rows="3"
+                                    placeholder="Tratamiento recomendado"></textarea>
+
+                            </div>
+
+                            <div class="input-group full-width">
+
+                                <label for="observaciones">
+
+                                    Observaciones
+
+                                </label>
+
+                                <textarea
+                                    id="observaciones"
+                                    rows="4"
+                                    placeholder="Observaciones de la consulta"></textarea>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="estado">
+
+                                    Estado
+
+                                </label>
+
+                                <select id="estado">
+
+                                    <option>
+
+                                        En Proceso
+
+                                    </option>
+
+                                    <option>
+
+                                        Finalizada
+
+                                    </option>
+
+                                    <option>
+
+                                        Revisada
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button
+                                type="button"
+                                class="btn btn-secondary modal-close">
+
+                                Cancelar
+
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary">
+
+                                <i class="fa-solid fa-floppy-disk"></i>
+
+                                <span>
+
+                                    Guardar Consulta
+
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <footer class="dashboard-footer">
+
+                <p>
+
+                    © 2026 PRISMA | Sistema de Gestión y Consolidación de Información Clínica
+
+                </p>
+
+                <span>
+
+                    Versión 1.0.0
+
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="../assets/js/consultas.js"></script>
+
+</body>
+
+</html>
+
+                    
+
+                    
+

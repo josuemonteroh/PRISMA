@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>PRISMA | Usuarios</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="../assets/css/reset.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/variables.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/style.css">
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <img
+                src="../assets/img/logo.png"
+                alt="PRISMA">
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="pacientes.html">
+
+                <i class="fa-solid fa-user-group"></i>
+
+                Pacientes
+
+            </a>
+
+            <a href="medicos.html">
+
+                <i class="fa-solid fa-user-doctor"></i>
+
+                Médicos
+
+            </a>
+
+            <a href="citas.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Citas
+
+            </a>
+
+            <a href="consultas.html">
+
+                <i class="fa-solid fa-stethoscope"></i>
+
+                Consultas
+
+            </a>
+
+            <a href="tratamientos.html">
+
+                <i class="fa-solid fa-notes-medical"></i>
+
+                Tratamientos
+
+            </a>
+
+            <a href="medicamentos.html">
+
+                <i class="fa-solid fa-pills"></i>
+
+                Medicamentos
+
+            </a>
+
+            <a
+                href="usuarios.html"
+                class="active">
+
+                <i class="fa-solid fa-users"></i>
+
+                Usuarios
+
+            </a>
+
+            <a href="reportes.html">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reportes
+
+            </a>
+
+            <a href="configuracion.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Configuración
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <a href="../login.html">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar sesión
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-title">
+
+                <h1>
+
+                    Usuarios
+
+                </h1>
+
+                <p>
+
+                    Administración de usuarios y roles del sistema.
+
+                </p>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                </button>
+
+                <div class="user-profile">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <div>
+
+                        <strong>
+
+                            Administrador
+
+                        </strong>
+
+                        <small>
+
+                            Administrador General
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+                    <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-title">
+
+                    <h2>
+
+                        Administración de Usuarios
+
+                    </h2>
+
+                    <p>
+
+                        Gestione los usuarios, roles y permisos del sistema PRISMA.
+
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn btn-primary"
+                    id="btnNuevoUsuario">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    <span>
+
+                        Nuevo Usuario
+
+                    </span>
+
+                </button>
+
+            </section>
+
+            <!-- FILTERS -->
+
+            <section class="filters-card">
+
+                <div class="filter-group">
+
+                    <label for="buscarUsuario">
+
+                        Buscar
+
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="buscarUsuario"
+                            placeholder="Buscar por nombre o usuario">
+
+                    </div>
+
+                </div>
+
+                <div class="filter-group">
+
+                    <label for="rolUsuario">
+
+                        Rol
+
+                    </label>
+
+                    <select id="rolUsuario">
+
+                        <option>
+
+                            Todos
+
+                        </option>
+
+                        <option>
+
+                            Administrador
+
+                        </option>
+
+                        <option>
+
+                            Médico
+
+                        </option>
+
+                        <option>
+
+                            Recepcionista
+
+                        </option>
+
+                        <option>
+
+                            Enfermero
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="filter-group">
+
+                    <label for="estadoUsuario">
+
+                        Estado
+
+                    </label>
+
+                    <select id="estadoUsuario">
+
+                        <option>
+
+                            Todos
+
+                        </option>
+
+                        <option>
+
+                            Activo
+
+                        </option>
+
+                        <option>
+
+                            Inactivo
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+            <!-- TABLE -->
+
+            <section class="table-container">
+
+                <div class="table-header">
+
+                    <h2>
+
+                        Usuarios Registrados
+
+                    </h2>
+
+                    <span>
+
+                        18 registros
+
+                    </span>
+
+                </div>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Nombre</th>
+
+                            <th>Usuario</th>
+
+                            <th>Rol</th>
+
+                            <th>Estado</th>
+
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                                            <tr>
+
+                            <td>001</td>
+
+                            <td>José Pablo Solano</td>
+
+                            <td>jsolano</td>
+
+                            <td>Administrador</td>
+
+                            <td>
+
+                                <span class="status active">
+
+                                    Activo
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>002</td>
+
+                            <td>Dra. María Gómez</td>
+
+                            <td>mgomez</td>
+
+                            <td>Médico</td>
+
+                            <td>
+
+                                <span class="status active">
+
+                                    Activo
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>003</td>
+
+                            <td>Laura Vargas</td>
+
+                            <td>lvargas</td>
+
+                            <td>Recepcionista</td>
+
+                            <td>
+
+                                <span class="status active">
+
+                                    Activo
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>004</td>
+
+                            <td>Kevin Jiménez</td>
+
+                            <td>kjimenez</td>
+
+                            <td>Enfermero</td>
+
+                            <td>
+
+                                <span class="status inactive">
+
+                                    Inactivo
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>005</td>
+
+                            <td>Carlos Ramírez</td>
+
+                            <td>cramirez</td>
+
+                            <td>Médico</td>
+
+                            <td>
+
+                                <span class="status active">
+
+                                    Activo
+
+                                </span>
+
+                            </td>
+
+                            <td class="actions">
+
+                                <button class="action-btn edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="action-btn delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <!-- PAGINACIÓN -->
+
+            <section class="pagination">
+
+                <button class="btn-secondary">
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </button>
+
+                <span>
+
+                    Página 1 de 2
+
+                </span>
+
+                <button class="btn-secondary">
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+            </section>
+
+            <!-- MODAL -->
+
+            <div
+                class="modal"
+                id="userModal">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h2>
+
+                            Nuevo Usuario
+
+                        </h2>
+
+                        <button
+                            class="modal-close">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+                    <form
+                        id="userForm">
+
+                                            <div class="form-grid">
+
+                            <div class="input-group">
+
+                                <label for="nombre">
+
+                                    Nombre Completo
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                    <input
+                                        type="text"
+                                        id="nombre"
+                                        placeholder="Ingrese el nombre completo"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="usuario">
+
+                                    Usuario
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-user-tag"></i>
+
+                                    <input
+                                        type="text"
+                                        id="usuario"
+                                        placeholder="Nombre de usuario"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="correo">
+
+                                    Correo Electrónico
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-envelope"></i>
+
+                                    <input
+                                        type="email"
+                                        id="correo"
+                                        placeholder="usuario@prisma.com"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="password">
+
+                                    Contraseña
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-lock"></i>
+
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        placeholder="********"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="rol">
+
+                                    Rol
+
+                                </label>
+
+                                <select
+                                    id="rol"
+                                    required>
+
+                                    <option>
+
+                                        Administrador
+
+                                    </option>
+
+                                    <option>
+
+                                        Médico
+
+                                    </option>
+
+                                    <option>
+
+                                        Recepcionista
+
+                                    </option>
+
+                                    <option>
+
+                                        Enfermero
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="estado">
+
+                                    Estado
+
+                                </label>
+
+                                <select
+                                    id="estado">
+
+                                    <option>
+
+                                        Activo
+
+                                    </option>
+
+                                    <option>
+
+                                        Inactivo
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="input-group full-width">
+
+                                <label for="observaciones">
+
+                                    Observaciones
+
+                                </label>
+
+                                <textarea
+                                    id="observaciones"
+                                    rows="4"
+                                    placeholder="Observaciones del usuario"></textarea>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button
+                                type="button"
+                                class="btn btn-secondary modal-close">
+
+                                Cancelar
+
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary">
+
+                                <i class="fa-solid fa-floppy-disk"></i>
+
+                                <span>
+
+                                    Guardar Usuario
+
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <footer class="dashboard-footer">
+
+                <p>
+
+                    © 2026 PRISMA | Sistema de Gestión y Consolidación de Información Clínica
+
+                </p>
+
+                <span>
+
+                    Versión 1.0.0
+
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="../assets/js/usuarios.js"></script>
+
+</body>
+
+</html>
+
