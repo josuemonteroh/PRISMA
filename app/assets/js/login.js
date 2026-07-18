@@ -10,37 +10,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    const USER = {
-
-        username: "admin@prisma.com",
-        password: "Grupo2"
-
-    };
-
     const error = document.querySelector(".alert-error");
+    const btnSubmit = loginForm.querySelector("button[type='submit']");
 
-    loginForm.addEventListener("submit", (event) => {
+    loginForm.addEventListener("submit", async (event) => {
 
         event.preventDefault();
 
         error.style.display = "none";
 
-        const username = document.getElementById("username").value.trim();
+        const usuario = document.getElementById("username").value.trim();
+        const contrasena = document.getElementById("password").value;
 
-        const password = document.getElementById("password").value;
+        btnSubmit.disabled = true;
 
-        if (
-            username === USER.username &&
-            password === USER.password
-        ){
+        try {
 
-            window.location.href = "pages/dashboard.html";
+            const respuesta = await fetch("assets/backend/auth/login.php", {
 
-        }else{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({ usuario, contrasena })
 
+            });
+
+            const resultado = await respuesta.json();
+
+            if (resultado.success){
+
+                window.location.href = "pages/dashboard.html";
+
+            }else{
+
+                error.textContent = resultado.message || "Usuario o contraseña incorrectos.";
+                error.style.display = "flex";
+                document.getElementById("username").focus();
+
+            }
+
+        }catch (err){
+
+            error.textContent = "No se pudo conectar con el servidor. Intente de nuevo.";
             error.style.display = "flex";
 
-            document.getElementById("username").focus();
+        }finally{
+
+            btnSubmit.disabled = false;
 
         }
 
