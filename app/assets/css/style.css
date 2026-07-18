@@ -822,6 +822,18 @@ body{
 
     flex:1;
 
+    min-height:0;
+
+    overflow-y:auto;
+
+}
+
+.sidebar-logo,
+
+.sidebar-footer{
+
+    flex-shrink:0;
+
 }
 
 .sidebar-menu a{
@@ -2258,6 +2270,8 @@ tbody tr:hover{
 
     max-width:900px;
 
+    max-height:90vh;
+
     background:#FFFFFF;
 
     border-radius:24px;
@@ -2267,6 +2281,20 @@ tbody tr:hover{
     box-shadow:0 30px 60px rgba(0,0,0,.18);
 
     animation:modalFade .25s ease;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.modal-content > form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:0;
 
 }
 
@@ -2301,6 +2329,8 @@ tbody tr:hover{
     padding:1.5rem 2rem;
 
     border-bottom:1px solid var(--border);
+
+    flex-shrink:0;
 
 }
 
@@ -2354,6 +2384,8 @@ tbody tr:hover{
 
     padding:2rem;
 
+    overflow-y:auto;
+
 }
 
 .full-width{
@@ -2405,6 +2437,8 @@ tbody tr:hover{
     padding:1.5rem 2rem;
 
     border-top:1px solid var(--border);
+
+    flex-shrink:0;
 
 }
 

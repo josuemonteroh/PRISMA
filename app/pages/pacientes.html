@@ -329,82 +329,6 @@
 
                 <div class="filter-group">
 
-                    <label for="estadoPaciente">
-
-                        Estado
-
-                    </label>
-
-                    <select id="estadoPaciente">
-
-                        <option value="">
-
-                            Todos
-
-                        </option>
-
-                        <option>
-
-                            Activo
-
-                        </option>
-
-                        <option>
-
-                            Inactivo
-
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <div class="filter-group">
-
-                    <label for="medicoPaciente">
-
-                        Médico
-
-                    </label>
-
-                    <select id="medicoPaciente">
-
-                        <option>
-
-                            Todos
-
-                        </option>
-
-                        <option>
-
-                            Dra. Gómez
-
-                        </option>
-
-                        <option>
-
-                            Dr. Castro
-
-                        </option>
-
-                        <option>
-
-                            Dra. Solís
-
-                        </option>
-
-                        <option>
-
-                            Dr. Jiménez
-
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <div class="filter-group">
-
                     <label>
 
                         Acciones
@@ -463,9 +387,9 @@
 
                             <th>Teléfono</th>
 
-                            <th>Médico</th>
+                            <th>Correo</th>
 
-                            <th>Estado</th>
+                            <th>Sexo</th>
 
                             <th>Acciones</th>
 
@@ -473,207 +397,7 @@
 
                     </thead>
 
-                    <tbody>
-
-                        <tr>
-
-                            <td>001</td>
-
-                            <td>Juan Pérez</td>
-
-                            <td>1-1234-5678</td>
-
-                            <td>8888-1111</td>
-
-                            <td>Dra. Gómez</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                                                <tr>
-
-                            <td>002</td>
-
-                            <td>Ana Rojas</td>
-
-                            <td>2-2345-6789</td>
-
-                            <td>8888-2222</td>
-
-                            <td>Dr. Castro</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>003</td>
-
-                            <td>Luis Mora</td>
-
-                            <td>3-3456-7890</td>
-
-                            <td>8888-3333</td>
-
-                            <td>Dra. Solís</td>
-
-                            <td>
-
-                                <span class="status inactive">
-
-                                    Inactivo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>004</td>
-
-                            <td>Sofía Vargas</td>
-
-                            <td>4-4567-8901</td>
-
-                            <td>8888-4444</td>
-
-                            <td>Dr. Jiménez</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>005</td>
-
-                            <td>Carlos León</td>
-
-                            <td>5-5678-9012</td>
-
-                            <td>8888-5555</td>
-
-                            <td>Dra. Gómez</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
+                    <tbody id="tablaPacientes">
 
                     </tbody>
 
@@ -873,85 +597,21 @@
 
                                 <select id="sexo">
 
-                                    <option>
+                                    <option value="">
 
                                         Seleccione
 
                                     </option>
 
-                                    <option>
+                                    <option value="M">
 
                                         Masculino
 
                                     </option>
 
-                                    <option>
+                                    <option value="F">
 
                                         Femenino
-
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                            <div class="input-group">
-
-                                <label for="medico">
-
-                                    Médico asignado
-
-                                </label>
-
-                                <select id="medico">
-
-                                    <option>
-
-                                        Dra. Gómez
-
-                                    </option>
-
-                                    <option>
-
-                                        Dr. Castro
-
-                                    </option>
-
-                                    <option>
-
-                                        Dra. Solís
-
-                                    </option>
-
-                                    <option>
-
-                                        Dr. Jiménez
-
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                            <div class="input-group">
-
-                                <label for="estado">
-
-                                    Estado
-
-                                </label>
-
-                                <select id="estado">
-
-                                    <option>
-
-                                        Activo
-
-                                    </option>
-
-                                    <option>
-
-                                        Inactivo
 
                                     </option>
 
@@ -1028,6 +688,7 @@
 
     </div>
 
+    <script src="../assets/js/session-guard.js"></script>
     <script src="../assets/js/pacientes.js"></script>
 
 </body>

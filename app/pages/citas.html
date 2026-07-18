@@ -377,207 +377,7 @@
 
                     </thead>
 
-                    <tbody>
-
-                                            <tr>
-
-                            <td>001</td>
-
-                            <td>Juan Pérez</td>
-
-                            <td>Dra. María Gómez</td>
-
-                            <td>15/07/2026</td>
-
-                            <td>08:00 AM</td>
-
-                            <td>
-
-                                <span class="status scheduled">
-
-                                    Programada
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>002</td>
-
-                            <td>Ana Rojas</td>
-
-                            <td>Dr. Carlos Castro</td>
-
-                            <td>15/07/2026</td>
-
-                            <td>09:30 AM</td>
-
-                            <td>
-
-                                <span class="status confirmed">
-
-                                    Confirmada
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>003</td>
-
-                            <td>Luis Mora</td>
-
-                            <td>Dra. Laura Jiménez</td>
-
-                            <td>15/07/2026</td>
-
-                            <td>11:00 AM</td>
-
-                            <td>
-
-                                <span class="status attended">
-
-                                    Atendida
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>004</td>
-
-                            <td>Sofía Vargas</td>
-
-                            <td>Dr. José Ramírez</td>
-
-                            <td>16/07/2026</td>
-
-                            <td>01:30 PM</td>
-
-                            <td>
-
-                                <span class="status cancelled">
-
-                                    Cancelada
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>005</td>
-
-                            <td>Carlos León</td>
-
-                            <td>Dra. María Gómez</td>
-
-                            <td>16/07/2026</td>
-
-                            <td>03:00 PM</td>
-
-                            <td>
-
-                                <span class="status confirmed">
-
-                                    Confirmada
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
+                    <tbody id="tablaCitas">
 
                     </tbody>
 
@@ -649,35 +449,7 @@
 
                                 <select id="paciente" required>
 
-                                    <option>
-
-                                        Seleccione un paciente
-
-                                    </option>
-
-                                    <option>
-
-                                        Juan Pérez
-
-                                    </option>
-
-                                    <option>
-
-                                        Ana Rojas
-
-                                    </option>
-
-                                    <option>
-
-                                        Luis Mora
-
-                                    </option>
-
-                                    <option>
-
-                                        Sofía Vargas
-
-                                    </option>
+                                    <option value="">Seleccione un paciente</option>
 
                                 </select>
 
@@ -693,35 +465,23 @@
 
                                 <select id="medico" required>
 
-                                    <option>
+                                    <option value="">Seleccione un médico</option>
 
-                                        Seleccione un médico
+                                </select>
 
-                                    </option>
+                            </div>
 
-                                    <option>
+                            <div class="input-group">
 
-                                        Dra. María Gómez
+                                <label for="consultorio">
 
-                                    </option>
+                                    Consultorio
 
-                                    <option>
+                                </label>
 
-                                        Dr. Carlos Castro
+                                <select id="consultorio" required>
 
-                                    </option>
-
-                                    <option>
-
-                                        Dra. Laura Jiménez
-
-                                    </option>
-
-                                    <option>
-
-                                        Dr. José Ramírez
-
-                                    </option>
+                                    <option value="">Seleccione un consultorio</option>
 
                                 </select>
 
@@ -782,25 +542,25 @@
 
                                 <select id="estado">
 
-                                    <option>
+                                    <option value="PROGRAMADA">
 
                                         Programada
 
                                     </option>
 
-                                    <option>
+                                    <option value="CONFIRMADA">
 
                                         Confirmada
 
                                     </option>
 
-                                    <option>
+                                    <option value="ATENDIDA">
 
                                         Atendida
 
                                     </option>
 
-                                    <option>
+                                    <option value="CANCELADA">
 
                                         Cancelada
 
@@ -864,6 +624,7 @@
 
     </div>
 
+    <script src="../assets/js/session-guard.js"></script>
     <script src="../assets/js/citas.js"></script>
 
 </body>

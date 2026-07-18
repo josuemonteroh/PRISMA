@@ -273,88 +273,6 @@
 
                 </div>
 
-                <div class="filter-group">
-
-                    <label for="categoriaMedicamento">
-
-                        Categoría
-
-                    </label>
-
-                    <select id="categoriaMedicamento">
-
-                        <option>
-
-                            Todas
-
-                        </option>
-
-                        <option>
-
-                            Analgésicos
-
-                        </option>
-
-                        <option>
-
-                            Antibióticos
-
-                        </option>
-
-                        <option>
-
-                            Antiinflamatorios
-
-                        </option>
-
-                        <option>
-
-                            Antihipertensivos
-
-                        </option>
-
-                        <option>
-
-                            Vitaminas
-
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <div class="filter-group">
-
-                    <label for="estadoMedicamento">
-
-                        Disponibilidad
-
-                    </label>
-
-                    <select id="estadoMedicamento">
-
-                        <option>
-
-                            Todos
-
-                        </option>
-
-                        <option>
-
-                            Disponible
-
-                        </option>
-
-                        <option>
-
-                            Agotado
-
-                        </option>
-
-                    </select>
-
-                </div>
-
             </section>
 
             <!-- TABLE -->
@@ -391,9 +309,7 @@
 
                             <th>Presentación</th>
 
-                            <th>Dosis</th>
-
-                            <th>Disponibilidad</th>
+                            <th>Concentración</th>
 
                             <th>Acciones</th>
 
@@ -401,207 +317,7 @@
 
                     </thead>
 
-                    <tbody>
-
-                                            <tr>
-
-                            <td>001</td>
-
-                            <td>Paracetamol</td>
-
-                            <td>Analgésico</td>
-
-                            <td>Tabletas 500 mg</td>
-
-                            <td>1 cada 8 horas</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Disponible
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>002</td>
-
-                            <td>Ibuprofeno</td>
-
-                            <td>Antiinflamatorio</td>
-
-                            <td>Tabletas 400 mg</td>
-
-                            <td>1 cada 12 horas</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Disponible
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>003</td>
-
-                            <td>Amoxicilina</td>
-
-                            <td>Antibiótico</td>
-
-                            <td>Cápsulas 500 mg</td>
-
-                            <td>1 cada 8 horas</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Disponible
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>004</td>
-
-                            <td>Losartán</td>
-
-                            <td>Antihipertensivo</td>
-
-                            <td>Tabletas 50 mg</td>
-
-                            <td>1 diaria</td>
-
-                            <td>
-
-                                <span class="status inactive">
-
-                                    Agotado
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>005</td>
-
-                            <td>Metformina</td>
-
-                            <td>Antidiabético</td>
-
-                            <td>Tabletas 850 mg</td>
-
-                            <td>1 cada 12 horas</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Disponible
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
+                    <tbody id="tablaMedicamentos">
 
                     </tbody>
 
@@ -762,7 +478,7 @@
 
                                 <label for="dosis">
 
-                                    Dosis
+                                    Concentración
 
                                 </label>
 
@@ -773,65 +489,9 @@
                                     <input
                                         type="text"
                                         id="dosis"
-                                        placeholder="Ej. 1 cada 8 horas">
+                                        placeholder="Ej. 500 mg">
 
                                 </div>
-
-                            </div>
-
-                            <div class="input-group full-width">
-
-                                <label for="principioActivo">
-
-                                    Principio Activo
-
-                                </label>
-
-                                <textarea
-                                    id="principioActivo"
-                                    rows="3"
-                                    placeholder="Ingrese el principio activo"></textarea>
-
-                            </div>
-
-                            <div class="input-group full-width">
-
-                                <label for="indicaciones">
-
-                                    Indicaciones
-
-                                </label>
-
-                                <textarea
-                                    id="indicaciones"
-                                    rows="4"
-                                    placeholder="Indicaciones del medicamento"></textarea>
-
-                            </div>
-
-                            <div class="input-group">
-
-                                <label for="estado">
-
-                                    Disponibilidad
-
-                                </label>
-
-                                <select id="estado">
-
-                                    <option>
-
-                                        Disponible
-
-                                    </option>
-
-                                    <option>
-
-                                        Agotado
-
-                                    </option>
-
-                                </select>
 
                             </div>
 
@@ -889,6 +549,7 @@
 
     </div>
 
+    <script src="../assets/js/session-guard.js"></script>
     <script src="../assets/js/medicamentos.js"></script>
 
 </body>

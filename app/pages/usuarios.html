@@ -273,82 +273,6 @@
 
                 </div>
 
-                <div class="filter-group">
-
-                    <label for="rolUsuario">
-
-                        Rol
-
-                    </label>
-
-                    <select id="rolUsuario">
-
-                        <option>
-
-                            Todos
-
-                        </option>
-
-                        <option>
-
-                            Administrador
-
-                        </option>
-
-                        <option>
-
-                            Médico
-
-                        </option>
-
-                        <option>
-
-                            Recepcionista
-
-                        </option>
-
-                        <option>
-
-                            Enfermero
-
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <div class="filter-group">
-
-                    <label for="estadoUsuario">
-
-                        Estado
-
-                    </label>
-
-                    <select id="estadoUsuario">
-
-                        <option>
-
-                            Todos
-
-                        </option>
-
-                        <option>
-
-                            Activo
-
-                        </option>
-
-                        <option>
-
-                            Inactivo
-
-                        </option>
-
-                    </select>
-
-                </div>
-
             </section>
 
             <!-- TABLE -->
@@ -379,9 +303,9 @@
 
                             <th>ID</th>
 
-                            <th>Nombre</th>
-
                             <th>Usuario</th>
+
+                            <th>Correo</th>
 
                             <th>Rol</th>
 
@@ -393,197 +317,7 @@
 
                     </thead>
 
-                    <tbody>
-
-                                            <tr>
-
-                            <td>001</td>
-
-                            <td>José Pablo Solano</td>
-
-                            <td>jsolano</td>
-
-                            <td>Administrador</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>002</td>
-
-                            <td>Dra. María Gómez</td>
-
-                            <td>mgomez</td>
-
-                            <td>Médico</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>003</td>
-
-                            <td>Laura Vargas</td>
-
-                            <td>lvargas</td>
-
-                            <td>Recepcionista</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>004</td>
-
-                            <td>Kevin Jiménez</td>
-
-                            <td>kjimenez</td>
-
-                            <td>Enfermero</td>
-
-                            <td>
-
-                                <span class="status inactive">
-
-                                    Inactivo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>005</td>
-
-                            <td>Carlos Ramírez</td>
-
-                            <td>cramirez</td>
-
-                            <td>Médico</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
+                    <tbody id="tablaUsuarios">
 
                     </tbody>
 
@@ -647,28 +381,6 @@
 
                             <div class="input-group">
 
-                                <label for="nombre">
-
-                                    Nombre Completo
-
-                                </label>
-
-                                <div class="input-box">
-
-                                    <i class="fa-solid fa-user"></i>
-
-                                    <input
-                                        type="text"
-                                        id="nombre"
-                                        placeholder="Ingrese el nombre completo"
-                                        required>
-
-                                </div>
-
-                            </div>
-
-                            <div class="input-group">
-
                                 <label for="usuario">
 
                                     Usuario
@@ -726,8 +438,7 @@
                                     <input
                                         type="password"
                                         id="password"
-                                        placeholder="********"
-                                        required>
+                                        placeholder="********">
 
                                 </div>
 
@@ -745,29 +456,7 @@
                                     id="rol"
                                     required>
 
-                                    <option>
-
-                                        Administrador
-
-                                    </option>
-
-                                    <option>
-
-                                        Médico
-
-                                    </option>
-
-                                    <option>
-
-                                        Recepcionista
-
-                                    </option>
-
-                                    <option>
-
-                                        Enfermero
-
-                                    </option>
+                                    <option value="">Seleccione</option>
 
                                 </select>
 
@@ -784,34 +473,19 @@
                                 <select
                                     id="estado">
 
-                                    <option>
+                                    <option value="ACTIVO">
 
                                         Activo
 
                                     </option>
 
-                                    <option>
+                                    <option value="INACTIVO">
 
                                         Inactivo
 
                                     </option>
 
                                 </select>
-
-                            </div>
-
-                            <div class="input-group full-width">
-
-                                <label for="observaciones">
-
-                                    Observaciones
-
-                                </label>
-
-                                <textarea
-                                    id="observaciones"
-                                    rows="4"
-                                    placeholder="Observaciones del usuario"></textarea>
 
                             </div>
 
@@ -869,6 +543,7 @@
 
     </div>
 
+    <script src="../assets/js/session-guard.js"></script>
     <script src="../assets/js/usuarios.js"></script>
 
 </body>

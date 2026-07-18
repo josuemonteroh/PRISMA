@@ -321,98 +321,6 @@
 
                 </div>
 
-                <!-- ESTADO -->
-
-                <div class="filter-group">
-
-                    <label for="estadoMedico">
-
-                        Estado
-
-                    </label>
-
-                    <select id="estadoMedico">
-
-                        <option value="">
-
-                            Todos
-
-                        </option>
-
-                        <option>
-
-                            Activo
-
-                        </option>
-
-                        <option>
-
-                            Inactivo
-
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <!-- ESPECIALIDAD -->
-
-                <div class="filter-group">
-
-                    <label for="especialidad">
-
-                        Especialidad
-
-                    </label>
-
-                    <select id="especialidad">
-
-                        <option value="">
-
-                            Todas
-
-                        </option>
-
-                        <option>
-
-                            Medicina General
-
-                        </option>
-
-                        <option>
-
-                            Cardiología
-
-                        </option>
-
-                        <option>
-
-                            Pediatría
-
-                        </option>
-
-                        <option>
-
-                            Dermatología
-
-                        </option>
-
-                        <option>
-
-                            Ginecología
-
-                        </option>
-
-                        <option>
-
-                            Neurología
-
-                        </option>
-
-                    </select>
-
-                </div>
-
             </section>
 
             <!-- DOCTORS TABLE -->
@@ -445,13 +353,13 @@
 
                             <th>Médico</th>
 
-                            <th>Cédula</th>
+                            <th>Colegiatura</th>
 
                             <th>Especialidad</th>
 
                             <th>Teléfono</th>
 
-                            <th>Estado</th>
+                            <th>Correo</th>
 
                             <th>Acciones</th>
 
@@ -459,207 +367,7 @@
 
                     </thead>
 
-                    <tbody>
-
-                                            <tr>
-
-                            <td>001</td>
-
-                            <td>Dr. Carlos Castro</td>
-
-                            <td>1-1234-5678</td>
-
-                            <td>Medicina General</td>
-
-                            <td>8888-1111</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>002</td>
-
-                            <td>Dra. María Gómez</td>
-
-                            <td>2-2345-6789</td>
-
-                            <td>Cardiología</td>
-
-                            <td>8888-2222</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>003</td>
-
-                            <td>Dr. Andrés Solís</td>
-
-                            <td>3-3456-7890</td>
-
-                            <td>Pediatría</td>
-
-                            <td>8888-3333</td>
-
-                            <td>
-
-                                <span class="status inactive">
-
-                                    Inactivo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>004</td>
-
-                            <td>Dra. Laura Jiménez</td>
-
-                            <td>4-4567-8901</td>
-
-                            <td>Dermatología</td>
-
-                            <td>8888-4444</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>005</td>
-
-                            <td>Dr. José Ramírez</td>
-
-                            <td>5-5678-9012</td>
-
-                            <td>Neurología</td>
-
-                            <td>8888-5555</td>
-
-                            <td>
-
-                                <span class="status active">
-
-                                    Activo
-
-                                </span>
-
-                            </td>
-
-                            <td class="actions">
-
-                                <button class="action-btn edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-                                <button class="action-btn delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </td>
-
-                        </tr>
+                    <tbody id="tablaMedicos">
 
                     </tbody>
 
@@ -767,71 +475,15 @@
 
                             <div class="input-group">
 
-                                <label for="cedula">
-
-                                    Cédula
-
-                                </label>
-
-                                <div class="input-box">
-
-                                    <i class="fa-solid fa-id-card"></i>
-
-                                    <input
-                                        type="text"
-                                        id="cedula"
-                                        placeholder="1-1234-5678"
-                                        required>
-
-                                </div>
-
-                            </div>
-
-                            <div class="input-group">
-
                                 <label for="especialidadModal">
 
                                     Especialidad
 
                                 </label>
 
-                                <select id="especialidadModal">
+                                <select id="especialidadModal" required>
 
-                                    <option>
-
-                                        Medicina General
-
-                                    </option>
-
-                                    <option>
-
-                                        Cardiología
-
-                                    </option>
-
-                                    <option>
-
-                                        Pediatría
-
-                                    </option>
-
-                                    <option>
-
-                                        Dermatología
-
-                                    </option>
-
-                                    <option>
-
-                                        Ginecología
-
-                                    </option>
-
-                                    <option>
-
-                                        Neurología
-
-                                    </option>
+                                    <option value="">Seleccione</option>
 
                                 </select>
 
@@ -881,35 +533,9 @@
 
                             <div class="input-group">
 
-                                <label for="estado">
-
-                                    Estado
-
-                                </label>
-
-                                <select id="estado">
-
-                                    <option>
-
-                                        Activo
-
-                                    </option>
-
-                                    <option>
-
-                                        Inactivo
-
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                            <div class="input-group">
-
                                 <label for="licencia">
 
-                                    Código Profesional
+                                    Número de colegiatura
 
                                 </label>
 
@@ -920,24 +546,10 @@
                                     <input
                                         type="text"
                                         id="licencia"
-                                        placeholder="CMP-00001">
+                                        placeholder="MED-1001"
+                                        required>
 
                                 </div>
-
-                            </div>
-
-                            <div class="input-group full-width">
-
-                                <label for="observaciones">
-
-                                    Observaciones
-
-                                </label>
-
-                                <textarea
-                                    id="observaciones"
-                                    rows="3"
-                                    placeholder="Información adicional del médico"></textarea>
 
                             </div>
 
@@ -995,6 +607,7 @@
 
     </div>
 
+    <script src="../assets/js/session-guard.js"></script>
     <script src="../assets/js/medicos.js"></script>
 
 </body>
