@@ -30,21 +30,12 @@ if ($id <= 0 || $nombre === '' || $apellido === '' || $cedula === '' || $fecha =
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    UPDATE PACIENTE
-    SET
-        NOMBRE           = :nombre,
-        APELLIDO         = :apellido,
-        FECHA_NACIMIENTO = TO_DATE(:fecha, 'YYYY-MM-DD'),
-        SEXO             = :sexo,
-        TELEFONO         = :telefono,
-        CORREO           = :correo,
-        DIRECCION        = :direccion,
-        CEDULA           = :cedula
-    WHERE ID_PACIENTE = :id
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "
+    BEGIN
+        SP_ACTUALIZAR_PACIENTE(:id, :nombre, :apellido, TO_DATE(:fecha, 'YYYY-MM-DD'), :sexo, :telefono, :correo, :direccion, :cedula);
+    END;
+");
+oci_bind_by_name($stmt, ':id', $id);
 oci_bind_by_name($stmt, ':nombre', $nombre);
 oci_bind_by_name($stmt, ':apellido', $apellido);
 oci_bind_by_name($stmt, ':fecha', $fecha);
@@ -53,7 +44,6 @@ oci_bind_by_name($stmt, ':telefono', $telefono);
 oci_bind_by_name($stmt, ':correo', $correo);
 oci_bind_by_name($stmt, ':direccion', $direccion);
 oci_bind_by_name($stmt, ':cedula', $cedula);
-oci_bind_by_name($stmt, ':id', $id);
 
 $exito = @oci_execute($stmt);
 
@@ -69,13 +59,7 @@ if (!$exito) {
     responderJSON(false, 'Error al actualizar el paciente: ' . $error['message'], null, 500);
 }
 
-$filasAfectadas = oci_num_rows($stmt);
-
 oci_free_statement($stmt);
 $db->disconnect();
-
-if ($filasAfectadas === 0) {
-    responderJSON(false, 'No se encontró el paciente indicado.', null, 404);
-}
 
 responderJSON(true, 'Paciente actualizado correctamente.');

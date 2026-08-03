@@ -10,27 +10,15 @@ requerirSesion();
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    SELECT
-        D.ID_MEDICO,
-        D.NOMBRE,
-        D.APELLIDO,
-        D.TELEFONO,
-        D.CORREO,
-        D.NUMERO_COLEGIATURA,
-        D.ID_ESPECIALIDAD,
-        E.NOMBRE_ESPECIALIDAD
-    FROM DOCTOR D
-    JOIN ESPECIALIDAD E ON E.ID_ESPECIALIDAD = D.ID_ESPECIALIDAD
-    ORDER BY D.ID_MEDICO DESC
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt   = oci_parse($conn, "BEGIN SP_LISTAR_DOCTOR(:cursor); END;");
+$cursor = oci_new_cursor($conn);
+oci_bind_by_name($stmt, ':cursor', $cursor, -1, OCI_B_CURSOR);
 oci_execute($stmt);
+oci_execute($cursor);
 
 $medicos = [];
 
-while ($fila = oci_fetch_assoc($stmt)) {
+while ($fila = oci_fetch_assoc($cursor)) {
     $medicos[] = [
         'id'                  => (int) $fila['ID_MEDICO'],
         'nombre'              => $fila['NOMBRE'],
@@ -39,10 +27,10 @@ while ($fila = oci_fetch_assoc($stmt)) {
         'correo'              => $fila['CORREO'],
         'numero_colegiatura'  => $fila['NUMERO_COLEGIATURA'],
         'id_especialidad'     => (int) $fila['ID_ESPECIALIDAD'],
-        'especialidad'        => $fila['NOMBRE_ESPECIALIDAD'],
     ];
 }
 
+oci_free_statement($cursor);
 oci_free_statement($stmt);
 $db->disconnect();
 

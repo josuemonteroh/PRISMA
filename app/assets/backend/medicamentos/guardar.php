@@ -25,20 +25,15 @@ if ($nombre === '') {
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    INSERT INTO MEDICAMENTO
-        (NOMBRE, DESCRIPCION, PRESENTACION, CONCENTRACION)
-    VALUES
-        (:nombre, :descripcion, :presentacion, :concentracion)
-    RETURNING ID_MEDICAMENTO INTO :id_medicamento
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "
+    BEGIN
+        SP_INSERTAR_MEDICAMENTO(:nombre, :descripcion, :presentacion, :concentracion);
+    END;
+");
 oci_bind_by_name($stmt, ':nombre', $nombre);
 oci_bind_by_name($stmt, ':descripcion', $descripcion);
 oci_bind_by_name($stmt, ':presentacion', $presentacion);
 oci_bind_by_name($stmt, ':concentracion', $concentracion);
-oci_bind_by_name($stmt, ':id_medicamento', $idNuevo, -1, SQLT_INT);
 
 $exito = @oci_execute($stmt);
 
@@ -57,4 +52,4 @@ if (!$exito) {
 oci_free_statement($stmt);
 $db->disconnect();
 
-responderJSON(true, 'Medicamento registrado correctamente.', ['id' => (int) $idNuevo]);
+responderJSON(true, 'Medicamento registrado correctamente.');

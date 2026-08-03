@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     let editandoId = null;
+    const pacientesMap = {};
+    const medicosMap = {};
+    const consultoriosMap = {};
 
     function abrirModalNuevo() {
         editandoId = null;
@@ -44,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         editandoId = null;
     }
 
-    async function cargarCatalogo(tipo, select, textoVacio) {
+    async function cargarCatalogo(tipo, select, textoVacio, mapa) {
         try {
             const respuesta = await fetch(CATALOGOS + "?tipo=" + tipo, { credentials: "same-origin" });
             const resultado = await respuesta.json();
@@ -52,6 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
             select.innerHTML = `<option value="">${textoVacio}</option>`;
 
             (resultado.data || []).forEach((item) => {
+                if (mapa) {
+                    mapa[item.id] = item.nombre;
+                }
                 const option = document.createElement("option");
                 option.value = item.id;
                 option.textContent = item.nombre;
@@ -67,8 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         tr.innerHTML = `
             <td>${String(cita.id).padStart(3, "0")}</td>
-            <td>${cita.paciente ?? ""}</td>
-            <td>${cita.medico ?? ""}</td>
+            <td>${pacientesMap[cita.id_paciente] ?? ""}</td>
+            <td>${medicosMap[cita.id_medico] ?? ""}</td>
             <td>${cita.fecha ?? ""}</td>
             <td>${cita.hora ?? ""}</td>
             <td>
@@ -205,8 +211,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    cargarCatalogo("pacientes", selectPaciente, "Seleccione un paciente");
-    cargarCatalogo("medicos", selectMedico, "Seleccione un médico");
-    cargarCatalogo("consultorios", selectConsultorio, "Seleccione un consultorio");
-    cargarCitas();
+    (async () => {
+        await Promise.all([
+            cargarCatalogo("pacientes", selectPaciente, "Seleccione un paciente", pacientesMap),
+            cargarCatalogo("medicos", selectMedico, "Seleccione un médico", medicosMap),
+            cargarCatalogo("consultorios", selectConsultorio, "Seleccione un consultorio", consultoriosMap)
+        ]);
+        cargarCitas();
+    })();
 });

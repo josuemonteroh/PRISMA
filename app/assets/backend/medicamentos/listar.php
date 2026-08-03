@@ -10,23 +10,15 @@ requerirSesion();
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    SELECT
-        ID_MEDICAMENTO,
-        NOMBRE,
-        DESCRIPCION,
-        PRESENTACION,
-        CONCENTRACION
-    FROM MEDICAMENTO
-    ORDER BY ID_MEDICAMENTO DESC
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt   = oci_parse($conn, "BEGIN SP_LISTAR_MEDICAMENTO(:cursor); END;");
+$cursor = oci_new_cursor($conn);
+oci_bind_by_name($stmt, ':cursor', $cursor, -1, OCI_B_CURSOR);
 oci_execute($stmt);
+oci_execute($cursor);
 
 $medicamentos = [];
 
-while ($fila = oci_fetch_assoc($stmt)) {
+while ($fila = oci_fetch_assoc($cursor)) {
     $medicamentos[] = [
         'id'            => (int) $fila['ID_MEDICAMENTO'],
         'nombre'        => $fila['NOMBRE'],
@@ -36,6 +28,7 @@ while ($fila = oci_fetch_assoc($stmt)) {
     ];
 }
 
+oci_free_statement($cursor);
 oci_free_statement($stmt);
 $db->disconnect();
 

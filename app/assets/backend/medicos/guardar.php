@@ -27,22 +27,17 @@ if ($idEspecialidad <= 0 || $nombre === '' || $apellido === '' || $colegiatura =
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    INSERT INTO DOCTOR
-        (ID_ESPECIALIDAD, NOMBRE, APELLIDO, TELEFONO, CORREO, NUMERO_COLEGIATURA)
-    VALUES
-        (:id_especialidad, :nombre, :apellido, :telefono, :correo, :colegiatura)
-    RETURNING ID_MEDICO INTO :id_medico
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "
+    BEGIN
+        SP_INSERTAR_DOCTOR(:id_especialidad, :nombre, :apellido, :telefono, :correo, :colegiatura);
+    END;
+");
 oci_bind_by_name($stmt, ':id_especialidad', $idEspecialidad);
 oci_bind_by_name($stmt, ':nombre', $nombre);
 oci_bind_by_name($stmt, ':apellido', $apellido);
 oci_bind_by_name($stmt, ':telefono', $telefono);
 oci_bind_by_name($stmt, ':correo', $correo);
 oci_bind_by_name($stmt, ':colegiatura', $colegiatura);
-oci_bind_by_name($stmt, ':id_medico', $idNuevo, -1, SQLT_INT);
 
 $exito = @oci_execute($stmt);
 
@@ -64,4 +59,4 @@ if (!$exito) {
 oci_free_statement($stmt);
 $db->disconnect();
 
-responderJSON(true, 'Médico registrado correctamente.', ['id' => (int) $idNuevo]);
+responderJSON(true, 'Médico registrado correctamente.');

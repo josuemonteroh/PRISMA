@@ -28,15 +28,11 @@ if ($idPaciente <= 0 || $idMedico <= 0 || $idConsultorio <= 0 || $fecha === '' |
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    INSERT INTO CITA
-        (ID_PACIENTE, ID_MEDICO, ID_CONSULTORIO, FECHA, HORA, ESTADO, MOTIVO)
-    VALUES
-        (:id_paciente, :id_medico, :id_consultorio, TO_DATE(:fecha, 'YYYY-MM-DD'), :hora, :estado, :motivo)
-    RETURNING ID_CITA INTO :id_cita
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "
+    BEGIN
+        SP_INSERTAR_CITA(:id_paciente, :id_medico, :id_consultorio, TO_DATE(:fecha, 'YYYY-MM-DD'), :hora, :estado, :motivo);
+    END;
+");
 oci_bind_by_name($stmt, ':id_paciente', $idPaciente);
 oci_bind_by_name($stmt, ':id_medico', $idMedico);
 oci_bind_by_name($stmt, ':id_consultorio', $idConsultorio);
@@ -44,7 +40,6 @@ oci_bind_by_name($stmt, ':fecha', $fecha);
 oci_bind_by_name($stmt, ':hora', $hora);
 oci_bind_by_name($stmt, ':estado', $estado);
 oci_bind_by_name($stmt, ':motivo', $motivo);
-oci_bind_by_name($stmt, ':id_cita', $idNuevo, -1, SQLT_INT);
 
 $exito = @oci_execute($stmt);
 
@@ -66,4 +61,4 @@ if (!$exito) {
 oci_free_statement($stmt);
 $db->disconnect();
 
-responderJSON(true, 'Cita registrada correctamente.', ['id' => (int) $idNuevo]);
+responderJSON(true, 'Cita registrada correctamente.');

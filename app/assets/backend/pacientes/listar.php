@@ -10,27 +10,15 @@ requerirSesion();
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    SELECT
-        ID_PACIENTE,
-        NOMBRE,
-        APELLIDO,
-        TO_CHAR(FECHA_NACIMIENTO, 'YYYY-MM-DD') AS FECHA_NACIMIENTO,
-        SEXO,
-        TELEFONO,
-        CORREO,
-        DIRECCION,
-        CEDULA
-    FROM PACIENTE
-    ORDER BY ID_PACIENTE DESC
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt   = oci_parse($conn, "BEGIN SP_LISTAR_PACIENTE(:cursor); END;");
+$cursor = oci_new_cursor($conn);
+oci_bind_by_name($stmt, ':cursor', $cursor, -1, OCI_B_CURSOR);
 oci_execute($stmt);
+oci_execute($cursor);
 
 $pacientes = [];
 
-while ($fila = oci_fetch_assoc($stmt)) {
+while ($fila = oci_fetch_assoc($cursor)) {
     $pacientes[] = [
         'id'               => (int) $fila['ID_PACIENTE'],
         'nombre'           => $fila['NOMBRE'],
@@ -44,6 +32,7 @@ while ($fila = oci_fetch_assoc($stmt)) {
     ];
 }
 
+oci_free_statement($cursor);
 oci_free_statement($stmt);
 $db->disconnect();
 

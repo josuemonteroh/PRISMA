@@ -63,35 +63,33 @@ function ejecutarCursor($conn, string $procedimiento): array
     return $filas;
 }
 
-$pacientesPorSexo = [];
-foreach (ejecutarCursor($conn, 'SP_REPORTE_PACIENTES_SEXO') as $fila) {
-    $pacientesPorSexo[] = [
-        'sexo'  => $fila['SEXO'],
+$consultasPorMes = [];
+foreach (ejecutarCursor($conn, 'SP_REPORTE_CONSULTAS_MES') as $fila) {
+    $consultasPorMes[] = [
+        'mes'   => $fila['MES'],
         'total' => (int) $fila['TOTAL'],
     ];
 }
 
-$citasPorEstado = [];
-foreach (ejecutarCursor($conn, 'SP_REPORTE_CITAS_ESTADO') as $fila) {
-    $citasPorEstado[] = [
-        'estado' => $fila['ESTADO'],
-        'total'  => (int) $fila['TOTAL'],
+$medicosPorEspecialidad = [];
+foreach (ejecutarCursor($conn, 'SP_REPORTE_MEDICOS_ESPECIALIDAD') as $fila) {
+    $medicosPorEspecialidad[] = [
+        'especialidad' => $fila['ESPECIALIDAD'],
+        'total'        => (int) $fila['TOTAL'],
     ];
 }
 
-$citasRecientes = [];
-foreach (ejecutarCursor($conn, 'SP_REPORTE_CITAS_RECIENTES') as $fila) {
-    $citasRecientes[] = [
-        'paciente' => $fila['PACIENTE'],
-        'medico'   => $fila['MEDICO'],
-        'fecha'    => $fila['FECHA'],
-        'estado'   => $fila['ESTADO'],
+$tratamientosPorDia = [];
+foreach (ejecutarCursor($conn, 'SP_REPORTE_TRATAMIENTOS_DIA') as $fila) {
+    $tratamientosPorDia[] = [
+        'dia'   => $fila['DIA'],
+        'total' => (int) $fila['TOTAL'],
     ];
 }
 
 $db->disconnect();
 
-responderJSON(true, 'Datos del dashboard obtenidos.', [
+responderJSON(true, 'Datos de reportes obtenidos.', [
     'indicadores' => [
         'pacientes'            => (int) $pacientes,
         'medicos'              => (int) $medicos,
@@ -104,7 +102,7 @@ responderJSON(true, 'Datos del dashboard obtenidos.', [
         'medicamentos'         => (int) $medicamentos,
         'facturacion_mes'      => (float) $facturacionMes,
     ],
-    'pacientes_por_sexo' => $pacientesPorSexo,
-    'citas_por_estado'   => $citasPorEstado,
-    'citas_recientes'    => $citasRecientes,
+    'consultas_por_mes'        => $consultasPorMes,
+    'medicos_por_especialidad' => $medicosPorEspecialidad,
+    'tratamientos_por_dia'     => $tratamientosPorDia,
 ]);

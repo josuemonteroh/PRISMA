@@ -10,32 +10,15 @@ requerirSesion();
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    SELECT
-        C.ID_CITA,
-        C.ID_PACIENTE,
-        C.ID_MEDICO,
-        C.ID_CONSULTORIO,
-        TO_CHAR(C.FECHA, 'YYYY-MM-DD') AS FECHA,
-        C.HORA,
-        C.ESTADO,
-        C.MOTIVO,
-        P.NOMBRE || ' ' || P.APELLIDO AS PACIENTE,
-        D.NOMBRE || ' ' || D.APELLIDO AS MEDICO,
-        CO.NOMBRE AS CONSULTORIO
-    FROM CITA C
-    JOIN PACIENTE P    ON P.ID_PACIENTE = C.ID_PACIENTE
-    JOIN DOCTOR D      ON D.ID_MEDICO = C.ID_MEDICO
-    JOIN CONSULTORIO CO ON CO.ID_CONSULTORIO = C.ID_CONSULTORIO
-    ORDER BY C.ID_CITA DESC
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt   = oci_parse($conn, "BEGIN SP_LISTAR_CITA(:cursor); END;");
+$cursor = oci_new_cursor($conn);
+oci_bind_by_name($stmt, ':cursor', $cursor, -1, OCI_B_CURSOR);
 oci_execute($stmt);
+oci_execute($cursor);
 
 $citas = [];
 
-while ($fila = oci_fetch_assoc($stmt)) {
+while ($fila = oci_fetch_assoc($cursor)) {
     $citas[] = [
         'id'              => (int) $fila['ID_CITA'],
         'id_paciente'     => (int) $fila['ID_PACIENTE'],
@@ -45,12 +28,10 @@ while ($fila = oci_fetch_assoc($stmt)) {
         'hora'            => $fila['HORA'],
         'estado'          => $fila['ESTADO'],
         'motivo'          => $fila['MOTIVO'],
-        'paciente'        => $fila['PACIENTE'],
-        'medico'          => $fila['MEDICO'],
-        'consultorio'     => $fila['CONSULTORIO'],
     ];
 }
 
+oci_free_statement($cursor);
 oci_free_statement($stmt);
 $db->disconnect();
 

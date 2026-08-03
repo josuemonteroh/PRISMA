@@ -25,8 +25,7 @@ if ($id === (int) $sesion['id_usuario']) {
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql  = "DELETE FROM USUARIO WHERE ID_USUARIO = :id";
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "BEGIN SP_ELIMINAR_USUARIO(:id); END;");
 oci_bind_by_name($stmt, ':id', $id);
 
 $exito = @oci_execute($stmt);
@@ -43,13 +42,7 @@ if (!$exito) {
     responderJSON(false, 'Error al eliminar el usuario: ' . $error['message'], null, 500);
 }
 
-$filasAfectadas = oci_num_rows($stmt);
-
 oci_free_statement($stmt);
 $db->disconnect();
-
-if ($filasAfectadas === 0) {
-    responderJSON(false, 'No se encontró el usuario indicado.', null, 404);
-}
 
 responderJSON(true, 'Usuario eliminado correctamente.');

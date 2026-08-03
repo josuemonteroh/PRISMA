@@ -29,20 +29,12 @@ if ($id <= 0 || $idPaciente <= 0 || $idMedico <= 0 || $idConsultorio <= 0 || $fe
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    UPDATE CITA
-    SET
-        ID_PACIENTE     = :id_paciente,
-        ID_MEDICO       = :id_medico,
-        ID_CONSULTORIO  = :id_consultorio,
-        FECHA           = TO_DATE(:fecha, 'YYYY-MM-DD'),
-        HORA            = :hora,
-        ESTADO          = :estado,
-        MOTIVO          = :motivo
-    WHERE ID_CITA = :id
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "
+    BEGIN
+        SP_ACTUALIZAR_CITA(:id, :id_paciente, :id_medico, :id_consultorio, TO_DATE(:fecha, 'YYYY-MM-DD'), :hora, :estado, :motivo);
+    END;
+");
+oci_bind_by_name($stmt, ':id', $id);
 oci_bind_by_name($stmt, ':id_paciente', $idPaciente);
 oci_bind_by_name($stmt, ':id_medico', $idMedico);
 oci_bind_by_name($stmt, ':id_consultorio', $idConsultorio);
@@ -50,7 +42,6 @@ oci_bind_by_name($stmt, ':fecha', $fecha);
 oci_bind_by_name($stmt, ':hora', $hora);
 oci_bind_by_name($stmt, ':estado', $estado);
 oci_bind_by_name($stmt, ':motivo', $motivo);
-oci_bind_by_name($stmt, ':id', $id);
 
 $exito = @oci_execute($stmt);
 
@@ -69,13 +60,7 @@ if (!$exito) {
     responderJSON(false, 'Error al actualizar la cita: ' . $error['message'], null, 500);
 }
 
-$filasAfectadas = oci_num_rows($stmt);
-
 oci_free_statement($stmt);
 $db->disconnect();
-
-if ($filasAfectadas === 0) {
-    responderJSON(false, 'No se encontró la cita indicada.', null, 404);
-}
 
 responderJSON(true, 'Cita actualizada correctamente.');

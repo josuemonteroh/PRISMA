@@ -29,28 +29,41 @@ $conn = $db->getConnection();
 
 if ($contrasena !== '') {
     $hash = password_hash($contrasena, PASSWORD_DEFAULT);
-    $sql = "
-        UPDATE USUARIO
-        SET ID_ROL = :id_rol, NOMBRE_USUARIO = :usuario, CORREO = :correo, ESTADO = :estado, CONTRASENA_HASH = :hash
-        WHERE ID_USUARIO = :id
-    ";
 } else {
-    $sql = "
-        UPDATE USUARIO
-        SET ID_ROL = :id_rol, NOMBRE_USUARIO = :usuario, CORREO = :correo, ESTADO = :estado
-        WHERE ID_USUARIO = :id
-    ";
+    $stmtBuscar = oci_parse($conn, "BEGIN SP_LISTAR_USUARIO(:cursor); END;");
+    $cursorBuscar = oci_new_cursor($conn);
+    oci_bind_by_name($stmtBuscar, ':cursor', $cursorBuscar, -1, OCI_B_CURSOR);
+    oci_execute($stmtBuscar);
+    oci_execute($cursorBuscar);
+
+    $hash = null;
+    while ($fila = oci_fetch_assoc($cursorBuscar)) {
+        if ((int) $fila['ID_USUARIO'] === $id) {
+            $hash = $fila['CONTRASENA_HASH'];
+            break;
+        }
+    }
+
+    oci_free_statement($cursorBuscar);
+    oci_free_statement($stmtBuscar);
+
+    if ($hash === null) {
+        $db->disconnect();
+        responderJSON(false, 'No se encontró el usuario indicado.', null, 404);
+    }
 }
 
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "
+    BEGIN
+        SP_ACTUALIZAR_USUARIO(:id, :id_rol, :usuario, :hash, :correo, :estado);
+    END;
+");
+oci_bind_by_name($stmt, ':id', $id);
 oci_bind_by_name($stmt, ':id_rol', $idRol);
 oci_bind_by_name($stmt, ':usuario', $usuario);
+oci_bind_by_name($stmt, ':hash', $hash);
 oci_bind_by_name($stmt, ':correo', $correo);
 oci_bind_by_name($stmt, ':estado', $estado);
-if ($contrasena !== '') {
-    oci_bind_by_name($stmt, ':hash', $hash);
-}
-oci_bind_by_name($stmt, ':id', $id);
 
 $exito = @oci_execute($stmt);
 
@@ -69,13 +82,7 @@ if (!$exito) {
     responderJSON(false, 'Error al actualizar el usuario: ' . $error['message'], null, 500);
 }
 
-$filasAfectadas = oci_num_rows($stmt);
-
 oci_free_statement($stmt);
 $db->disconnect();
-
-if ($filasAfectadas === 0) {
-    responderJSON(false, 'No se encontró el usuario indicado.', null, 404);
-}
 
 responderJSON(true, 'Usuario actualizado correctamente.');

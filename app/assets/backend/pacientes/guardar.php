@@ -29,15 +29,11 @@ if ($nombre === '' || $apellido === '' || $cedula === '' || $fecha === '' || $se
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    INSERT INTO PACIENTE
-        (NOMBRE, APELLIDO, FECHA_NACIMIENTO, SEXO, TELEFONO, CORREO, DIRECCION, CEDULA)
-    VALUES
-        (:nombre, :apellido, TO_DATE(:fecha, 'YYYY-MM-DD'), :sexo, :telefono, :correo, :direccion, :cedula)
-    RETURNING ID_PACIENTE INTO :id_paciente
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "
+    BEGIN
+        SP_INSERTAR_PACIENTE(:nombre, :apellido, TO_DATE(:fecha, 'YYYY-MM-DD'), :sexo, :telefono, :correo, :direccion, :cedula);
+    END;
+");
 oci_bind_by_name($stmt, ':nombre', $nombre);
 oci_bind_by_name($stmt, ':apellido', $apellido);
 oci_bind_by_name($stmt, ':fecha', $fecha);
@@ -46,7 +42,6 @@ oci_bind_by_name($stmt, ':telefono', $telefono);
 oci_bind_by_name($stmt, ':correo', $correo);
 oci_bind_by_name($stmt, ':direccion', $direccion);
 oci_bind_by_name($stmt, ':cedula', $cedula);
-oci_bind_by_name($stmt, ':id_paciente', $idNuevo, -1, SQLT_INT);
 
 $exito = @oci_execute($stmt);
 
@@ -65,4 +60,4 @@ if (!$exito) {
 oci_free_statement($stmt);
 $db->disconnect();
 
-responderJSON(true, 'Paciente registrado correctamente.', ['id' => (int) $idNuevo]);
+responderJSON(true, 'Paciente registrado correctamente.');

@@ -1,16 +1,21 @@
 "use strict";
 
+const BASE_REPORTES = "../assets/backend/reportes/";
+
+const ESTADOS_CITA_TEXTO = {
+    PROGRAMADA: "Programada",
+    CONFIRMADA: "Confirmada",
+    ATENDIDA: "Atendida",
+    CANCELADA: "Cancelada"
+};
+
 document.addEventListener("DOMContentLoaded", () => {
 
     cargarFecha();
 
-    crearGraficoPacientes();
-
-    crearGraficoCitas();
+    cargarDashboard();
 
 });
-
-/* FECHA */
 
 function cargarFecha(){
 
@@ -36,9 +41,51 @@ function cargarFecha(){
 
 }
 
-/* PACIENTES POR SEXO */
+async function cargarDashboard(){
 
-function crearGraficoPacientes(){
+    try {
+
+        const respuesta = await fetch(BASE_REPORTES + "dashboard.php", { credentials: "same-origin" });
+        const resultado = await respuesta.json();
+
+        if(!resultado.success){
+
+            return;
+
+        }
+
+        pintarIndicadores(resultado.data.indicadores);
+        crearGraficoPacientes(resultado.data.pacientes_por_sexo);
+        crearGraficoCitas(resultado.data.citas_por_estado);
+        pintarCitasRecientes(resultado.data.citas_recientes);
+
+    } catch (err) {
+
+        console.error("Error al cargar el dashboard:", err);
+
+    }
+
+}
+
+function pintarIndicadores(indicadores){
+
+    const tarjetas = document.querySelectorAll(".cards .dashboard-card span");
+
+    if(tarjetas.length < 5){
+
+        return;
+
+    }
+
+    tarjetas[0].textContent = indicadores.pacientes;
+    tarjetas[1].textContent = indicadores.medicos;
+    tarjetas[2].textContent = indicadores.citas_hoy;
+    tarjetas[3].textContent = indicadores.tratamientos_activos;
+    tarjetas[4].textContent = "₡" + Number(indicadores.facturacion_mes).toLocaleString("es-CR");
+
+}
+
+function crearGraficoPacientes(datos){
 
     const canvas = document.getElementById("patientsChart");
 
@@ -48,23 +95,19 @@ function crearGraficoPacientes(){
 
     }
 
+    const etiquetas = { F: "Femenino", M: "Masculino" };
+
     new Chart(canvas,{
 
         type:"doughnut",
 
         data:{
 
-            labels:[
-
-                "Femenino",
-
-                "Masculino"
-
-            ],
+            labels: datos.map((fila) => etiquetas[fila.sexo] ?? fila.sexo),
 
             datasets:[{
 
-                data:[138,110],
+                data: datos.map((fila) => fila.total),
 
                 backgroundColor:[
 
@@ -112,9 +155,7 @@ function crearGraficoPacientes(){
 
 }
 
-/* ESTADO DE CITAS */
-
-function crearGraficoCitas(){
+function crearGraficoCitas(datos){
 
     const canvas = document.getElementById("appointmentsChart");
 
@@ -130,23 +171,13 @@ function crearGraficoCitas(){
 
         data:{
 
-            labels:[
-
-                "Pendientes",
-
-                "Confirmadas",
-
-                "Finalizadas",
-
-                "Canceladas"
-
-            ],
+            labels: datos.map((fila) => ESTADOS_CITA_TEXTO[fila.estado] ?? fila.estado),
 
             datasets:[{
 
                 label:"Citas",
 
-                data:[12,28,10,4],
+                data: datos.map((fila) => fila.total),
 
                 backgroundColor:[
 
@@ -199,6 +230,42 @@ function crearGraficoCitas(){
             }
 
         }
+
+    });
+
+}
+
+function pintarCitasRecientes(filas){
+
+    const tabla = document.querySelector(".table-container table tbody");
+
+    if(!tabla){
+
+        return;
+
+    }
+
+    tabla.innerHTML = "";
+
+    if(!filas || filas.length === 0){
+
+        tabla.innerHTML = `<tr><td colspan="4">No hay citas registradas.</td></tr>`;
+        return;
+
+    }
+
+    filas.forEach((fila) => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${fila.paciente}</td>
+            <td>${fila.medico}</td>
+            <td>${fila.fecha ?? ""}</td>
+            <td>${ESTADOS_CITA_TEXTO[fila.estado] ?? fila.estado}</td>
+        `;
+
+        tabla.appendChild(tr);
 
     });
 

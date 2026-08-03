@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const CATALOGOS = "../assets/backend/common/catalogos.php";
 
     let editandoId = null;
+    let rolesMap = {};
 
     function abrirModalNuevo() {
         editandoId = null;
@@ -39,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectRol.innerHTML = '<option value="">Seleccione</option>';
 
             (resultado.data || []).forEach((rol) => {
+                rolesMap[rol.id] = rol.nombre;
                 const option = document.createElement("option");
                 option.value = rol.id;
                 option.textContent = rol.nombre;
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${String(usuario.id).padStart(3, "0")}</td>
             <td>${usuario.usuario}</td>
             <td>${usuario.correo ?? ""}</td>
-            <td>${usuario.rol ?? ""}</td>
+            <td>${rolesMap[usuario.id_rol] ?? ""}</td>
             <td>
                 <span class="status ${usuario.estado === "ACTIVO" ? "active" : "inactive"}">
                     ${usuario.estado === "ACTIVO" ? "Activo" : "Inactivo"}
@@ -189,6 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    cargarRoles();
-    cargarUsuarios();
+    (async () => {
+        await cargarRoles();
+        cargarUsuarios();
+    })();
 });

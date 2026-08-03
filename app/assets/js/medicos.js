@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const CATALOGOS = "../assets/backend/common/catalogos.php";
 
     let editandoId = null;
+    let especialidadesMap = {};
 
     function abrirModalNuevo() {
         editandoId = null;
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectEspecialidad.innerHTML = '<option value="">Seleccione</option>';
 
             (resultado.data || []).forEach((especialidad) => {
+                especialidadesMap[especialidad.id] = especialidad.nombre;
                 const option = document.createElement("option");
                 option.value = especialidad.id;
                 option.textContent = especialidad.nombre;
@@ -53,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${String(medico.id).padStart(3, "0")}</td>
             <td>Dr(a). ${medico.nombre} ${medico.apellido}</td>
             <td>${medico.numero_colegiatura ?? ""}</td>
-            <td>${medico.especialidad ?? ""}</td>
+            <td>${especialidadesMap[medico.id_especialidad] ?? ""}</td>
             <td>${medico.telefono ?? ""}</td>
             <td>${medico.correo ?? ""}</td>
             <td class="actions">
@@ -183,6 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    cargarEspecialidades();
-    cargarMedicos();
+    (async () => {
+        await cargarEspecialidades();
+        cargarMedicos();
+    })();
 });

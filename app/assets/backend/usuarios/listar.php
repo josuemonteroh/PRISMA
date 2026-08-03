@@ -10,35 +10,25 @@ requerirSesion();
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    SELECT
-        U.ID_USUARIO,
-        U.NOMBRE_USUARIO,
-        U.CORREO,
-        U.ESTADO,
-        U.ID_ROL,
-        R.NOMBRE_ROL
-    FROM USUARIO U
-    JOIN ROL R ON R.ID_ROL = U.ID_ROL
-    ORDER BY U.ID_USUARIO DESC
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt   = oci_parse($conn, "BEGIN SP_LISTAR_USUARIO(:cursor); END;");
+$cursor = oci_new_cursor($conn);
+oci_bind_by_name($stmt, ':cursor', $cursor, -1, OCI_B_CURSOR);
 oci_execute($stmt);
+oci_execute($cursor);
 
 $usuarios = [];
 
-while ($fila = oci_fetch_assoc($stmt)) {
+while ($fila = oci_fetch_assoc($cursor)) {
     $usuarios[] = [
-        'id'             => (int) $fila['ID_USUARIO'],
-        'usuario'        => $fila['NOMBRE_USUARIO'],
-        'correo'         => $fila['CORREO'],
-        'estado'         => $fila['ESTADO'],
-        'id_rol'         => (int) $fila['ID_ROL'],
-        'rol'            => $fila['NOMBRE_ROL'],
+        'id'      => (int) $fila['ID_USUARIO'],
+        'usuario' => $fila['NOMBRE_USUARIO'],
+        'correo'  => $fila['CORREO'],
+        'estado'  => $fila['ESTADO'],
+        'id_rol'  => (int) $fila['ID_ROL'],
     ];
 }
 
+oci_free_statement($cursor);
 oci_free_statement($stmt);
 $db->disconnect();
 

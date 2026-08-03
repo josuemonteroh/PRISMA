@@ -36,23 +36,16 @@ if ($usuario === '' || $contrasena === '') {
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    SELECT
-        ID_USUARIO,
-        ID_ROL,
-        NOMBRE_USUARIO,
-        CONTRASENA_HASH
-    FROM USUARIO
-    WHERE UPPER(NOMBRE_USUARIO) = UPPER(:usuario)
-    AND ESTADO = 'ACTIVO'
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt   = oci_parse($conn, "BEGIN SP_LOGIN_USUARIO(:usuario, :cursor); END;");
+$cursor = oci_new_cursor($conn);
 oci_bind_by_name($stmt, ':usuario', $usuario);
+oci_bind_by_name($stmt, ':cursor', $cursor, -1, OCI_B_CURSOR);
 oci_execute($stmt);
+oci_execute($cursor);
 
-$fila = oci_fetch_assoc($stmt);
+$fila = oci_fetch_assoc($cursor);
 
+oci_free_statement($cursor);
 
 if (!$fila || !password_verify($contrasena, $fila['CONTRASENA_HASH'])) {
 

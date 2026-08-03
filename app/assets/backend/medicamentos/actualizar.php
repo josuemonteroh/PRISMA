@@ -26,22 +26,16 @@ if ($id <= 0 || $nombre === '') {
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    UPDATE MEDICAMENTO
-    SET
-        NOMBRE        = :nombre,
-        DESCRIPCION   = :descripcion,
-        PRESENTACION  = :presentacion,
-        CONCENTRACION = :concentracion
-    WHERE ID_MEDICAMENTO = :id
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "
+    BEGIN
+        SP_ACTUALIZAR_MEDICAMENTO(:id, :nombre, :descripcion, :presentacion, :concentracion);
+    END;
+");
+oci_bind_by_name($stmt, ':id', $id);
 oci_bind_by_name($stmt, ':nombre', $nombre);
 oci_bind_by_name($stmt, ':descripcion', $descripcion);
 oci_bind_by_name($stmt, ':presentacion', $presentacion);
 oci_bind_by_name($stmt, ':concentracion', $concentracion);
-oci_bind_by_name($stmt, ':id', $id);
 
 $exito = @oci_execute($stmt);
 
@@ -57,13 +51,7 @@ if (!$exito) {
     responderJSON(false, 'Error al actualizar el medicamento: ' . $error['message'], null, 500);
 }
 
-$filasAfectadas = oci_num_rows($stmt);
-
 oci_free_statement($stmt);
 $db->disconnect();
-
-if ($filasAfectadas === 0) {
-    responderJSON(false, 'No se encontró el medicamento indicado.', null, 404);
-}
 
 responderJSON(true, 'Medicamento actualizado correctamente.');

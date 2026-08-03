@@ -37,6 +37,10 @@ class Database
             exit;
         }
 
+        $stmtNls = oci_parse($this->connection, "ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD'");
+        oci_execute($stmtNls);
+        oci_free_statement($stmtNls);
+
         return $this->connection;
     }
 

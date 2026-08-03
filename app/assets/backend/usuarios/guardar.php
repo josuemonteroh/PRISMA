@@ -28,21 +28,16 @@ $hash = password_hash($contrasena, PASSWORD_DEFAULT);
 $db   = new DatabaseHelper();
 $conn = $db->getConnection();
 
-$sql = "
-    INSERT INTO USUARIO
-        (ID_ROL, NOMBRE_USUARIO, CONTRASENA_HASH, CORREO, ESTADO)
-    VALUES
-        (:id_rol, :usuario, :hash, :correo, :estado)
-    RETURNING ID_USUARIO INTO :id_usuario
-";
-
-$stmt = oci_parse($conn, $sql);
+$stmt = oci_parse($conn, "
+    BEGIN
+        SP_INSERTAR_USUARIO(:id_rol, :usuario, :hash, :correo, :estado);
+    END;
+");
 oci_bind_by_name($stmt, ':id_rol', $idRol);
 oci_bind_by_name($stmt, ':usuario', $usuario);
 oci_bind_by_name($stmt, ':hash', $hash);
 oci_bind_by_name($stmt, ':correo', $correo);
 oci_bind_by_name($stmt, ':estado', $estado);
-oci_bind_by_name($stmt, ':id_usuario', $idNuevo, -1, SQLT_INT);
 
 $exito = @oci_execute($stmt);
 
@@ -64,4 +59,4 @@ if (!$exito) {
 oci_free_statement($stmt);
 $db->disconnect();
 
-responderJSON(true, 'Usuario registrado correctamente.', ['id' => (int) $idNuevo]);
+responderJSON(true, 'Usuario registrado correctamente.');
