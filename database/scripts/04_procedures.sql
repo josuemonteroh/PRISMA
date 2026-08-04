@@ -1175,21 +1175,38 @@ END;
 ---------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE SP_LISTAR_CONSULTA(
-
     P_CURSOR OUT SYS_REFCURSOR
-
 )
 AS
 BEGIN
-
     OPEN P_CURSOR FOR
+        SELECT
+            C.ID_CONSULTA,
+            C.ID_HISTORIAL,
+            C.ID_MEDICO,
+            C.ID_CITA,
+            TO_CHAR(C.FECHA, 'YYYY-MM-DD') AS FECHA,
+            C.OBSERVACIONES,
 
-        SELECT *
+            P.NOMBRE || ' ' || P.APELLIDO AS PACIENTE,
 
-        FROM CONSULTA
+            D.NOMBRE || ' ' || D.APELLIDO AS MEDICO,
 
-        ORDER BY FECHA DESC;
+            'Cita #' || C.ID_CITA ||
+            ' - ' || TO_CHAR(CI.FECHA, 'DD/MM/YYYY') ||
+            ' ' || CI.HORA AS CITA
 
+        FROM CONSULTA C
+        INNER JOIN HISTORIAL_CLINICO H
+            ON C.ID_HISTORIAL = H.ID_HISTORIAL
+        INNER JOIN PACIENTE P
+            ON H.ID_PACIENTE = P.ID_PACIENTE
+        INNER JOIN DOCTOR D
+            ON C.ID_MEDICO = D.ID_MEDICO
+        INNER JOIN CITA CI
+            ON C.ID_CITA = CI.ID_CITA
+
+        ORDER BY C.FECHA DESC;
 END;
 /
 
