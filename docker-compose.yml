@@ -1,0 +1,35 @@
+services:
+  php:
+    build:
+      context: ./docker/php
+    container_name: prisma-php
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app:/var/www/html
+    environment:
+      DB_HOST: oracle
+      DB_PORT: "1521"
+      DB_SERVICE: FREEPDB1
+      DB_USER: prisma
+      DB_PASSWORD: prisma123
+    restart: unless-stopped
+    depends_on:
+      - oracle
+
+  oracle:
+    image: gvenzl/oracle-free:23.6-slim
+    container_name: prisma-oracle
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: prisma123
+      APP_USER: prisma
+      APP_USER_PASSWORD: prisma123
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./database/scripts:/scripts
+    restart: unless-stopped
+
+volumes:
+  oracle-data:

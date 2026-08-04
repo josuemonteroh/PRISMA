@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>PRISMA | Reportes</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="../assets/css/reset.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/variables.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/style.css">
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CHART JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <img
+                src="../assets/img/logo.png"
+                alt="PRISMA">
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="pacientes.html">
+
+                <i class="fa-solid fa-user-group"></i>
+
+                Pacientes
+
+            </a>
+
+            <a href="medicos.html">
+
+                <i class="fa-solid fa-user-doctor"></i>
+
+                Médicos
+
+            </a>
+
+            <a href="citas.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Citas
+
+            </a>
+
+            <a href="consultas.html">
+
+                <i class="fa-solid fa-stethoscope"></i>
+
+                Consultas
+
+            </a>
+
+            <a href="tratamientos.html">
+
+                <i class="fa-solid fa-notes-medical"></i>
+
+                Tratamientos
+
+            </a>
+
+            <a href="medicamentos.html">
+
+                <i class="fa-solid fa-pills"></i>
+
+                Medicamentos
+
+            </a>
+
+            <a href="usuarios.html">
+
+                <i class="fa-solid fa-users"></i>
+
+                Usuarios
+
+            </a>
+
+            <a
+                href="reportes.html"
+                class="active">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reportes
+
+            </a>
+
+            <a href="configuracion.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Configuración
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <a href="../login.html">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar sesión
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-title">
+
+                <h1>
+
+                    Reportes
+
+                </h1>
+
+                <p>
+
+                    Indicadores y estadísticas del sistema clínico.
+
+                </p>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                </button>
+
+                <div class="user-profile">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <div>
+
+                        <strong>
+
+                            Administrador
+
+                        </strong>
+
+                        <small>
+
+                            Administrador General
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+                    <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-title">
+
+                    <h2>
+
+                        Reportes e Indicadores
+
+                    </h2>
+
+                    <p>
+
+                        Visualice estadísticas e indicadores del sistema PRISMA en tiempo real.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- KPI CARDS -->
+
+            <section class="cards">
+
+                <div class="dashboard-card">
+
+                    <i class="fa-solid fa-user-group"></i>
+
+                    <h3>
+
+                        Pacientes
+
+                    </h3>
+
+                    <span>
+
+                        128
+
+                    </span>
+
+                    <small>
+
+                        Registrados
+
+                    </small>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <h3>
+
+                        Citas
+
+                    </h3>
+
+                    <span>
+
+                        96
+
+                    </span>
+
+                    <small>
+
+                        Este mes
+
+                    </small>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <h3>
+
+                        Médicos
+
+                    </h3>
+
+                    <span>
+
+                        18
+
+                    </span>
+
+                    <small>
+
+                        Activos
+
+                    </small>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <i class="fa-solid fa-notes-medical"></i>
+
+                    <h3>
+
+                        Tratamientos
+
+                    </h3>
+
+                    <span>
+
+                        57
+
+                    </span>
+
+                    <small>
+
+                        En seguimiento
+
+                    </small>
+
+                </div>
+
+            </section>
+
+            <!-- CHARTS -->
+
+            <section class="dashboard-grid">
+
+                <div class="chart-card">
+
+                    <div class="table-header">
+
+                        <h2>
+
+                            Consultas por Mes
+
+                        </h2>
+
+                    </div>
+
+                    <canvas id="consultasChart"></canvas>
+
+                </div>
+
+                <div class="chart-card">
+
+                    <div class="table-header">
+
+                        <h2>
+
+                            Médicos por Especialidad
+
+                        </h2>
+
+                    </div>
+
+                    <canvas id="especialidadesChart"></canvas>
+
+                </div>
+
+            </section>
+
+            <section class="dashboard-grid">
+
+                <div class="chart-card">
+
+                    <div class="table-header">
+
+                        <h2>
+
+                            Tratamientos Activos
+
+                        </h2>
+
+                    </div>
+
+                    <canvas id="tratamientosChart"></canvas>
+
+                </div>
+
+                <div class="chart-card">
+
+                    <div class="table-header">
+
+                        <h2>
+
+                            Resumen General
+
+                        </h2>
+
+                    </div>
+
+                    <table>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>Pacientes Activos</td>
+
+                                <td><strong>112</strong></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Citas Pendientes</td>
+
+                                <td><strong>34</strong></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Consultas Realizadas</td>
+
+                                <td><strong>247</strong></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Tratamientos Finalizados</td>
+
+                                <td><strong>84</strong></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Medicamentos Registrados</td>
+
+                                <td><strong>82</strong></td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+                        <!-- FOOTER -->
+
+            <footer class="dashboard-footer">
+
+                <p>
+
+                    © 2026 PRISMA | Sistema de Gestión y Consolidación de Información Clínica
+
+                </p>
+
+                <span>
+
+                    Versión 1.0.0
+
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- CHART JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../assets/js/reportes.js"></script>
+
+</body>
+
+</html>
+

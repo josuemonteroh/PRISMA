@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>PRISMA | Iniciar Sesión</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <main class="login-container">
+
+        <!-- PANEL IZQUIERDO -->
+
+        <section class="login-brand">
+
+            <img
+                src="assets/img/logo.png"
+                alt="Logo PRISMA"
+                class="brand-logo">
+
+            <div class="brand-divider"></div>
+
+            <div class="brand-content">
+
+                <div class="brand-feature-card">
+
+                    <h3>
+
+                        Gestión Clínica Inteligente
+
+                    </h3>
+
+                    <p>
+
+                        Administre pacientes, médicos, historiales clínicos,
+                        tratamientos y expedientes desde una plataforma
+                        centralizada, segura y eficiente.
+
+                    </p>
+
+                    <ul class="feature-list">
+
+                        <li>
+
+                            <i class="fa-solid fa-notes-medical"></i>
+
+                            <span>
+
+                                Historial clínico centralizado
+
+                            </span>
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-user-doctor"></i>
+
+                            <span>
+
+                                Gestión de médicos y pacientes
+
+                            </span>
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <span>
+
+                                Información protegida y segura
+
+                            </span>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PANEL DERECHO -->
+
+        <section class="login-card">
+
+            <div class="card">
+
+                <header class="login-header">
+
+                    <h2>
+
+                        Bienvenido
+
+                    </h2>
+
+                    <p class="subtitle">
+
+                        Inicie sesión para acceder al sistema.
+
+                    </p>
+
+                </header>
+
+                <div
+                    class="alert-error"
+                    style="display:none;">
+
+                    Usuario o contraseña incorrectos.
+
+                </div>
+
+                <form
+                    class="login-form"
+                    method="POST"
+                    action="assets/backend/auth/login.php">
+
+                                    <!-- USUARIO -->
+
+                    <div class="input-group">
+
+                        <label for="username">
+
+                            Usuario
+
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-regular fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Ingrese su usuario"
+                                autocomplete="username"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <!-- CONTRASEÑA -->
+
+                    <div class="input-group">
+
+                        <label for="password">
+
+                            Contraseña
+
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Ingrese su contraseña"
+                                autocomplete="current-password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <!-- OPCIONES -->
+
+                    <div class="login-options">
+
+                        <label
+                            class="remember-user"
+                            for="remember">
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                                name="remember">
+
+                            Recordar usuario
+
+                        </label>
+
+                        <a
+                            href="#"
+                            class="forgot-password">
+
+                            ¿Olvidó su contraseña?
+
+                        </a>
+
+                    </div>
+
+                    <!-- BOTÓN -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+
+                        <span>
+
+                            Iniciar sesión
+
+                        </span>
+
+                    </button>
+
+                    <!-- FOOTER -->
+
+                    <div class="login-footer">
+
+                        <p>
+
+                            ¿No tiene una cuenta?
+
+                        </p>
+
+                        <a href="#">
+
+                            Crear cuenta
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+                                <!-- VERSIÓN -->
+
+                <div class="login-version">
+
+                    <span>
+
+                        Versión 1.0.0
+
+                    </span>
+
+                    <span>
+
+                        © 2026 PRISMA
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="assets/js/login.js"></script>
+
+</body>
+
+</html>

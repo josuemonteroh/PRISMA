@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>PRISMA | Configuración</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="../assets/css/reset.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/variables.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/style.css">
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <img
+                src="../assets/img/logo.png"
+                alt="PRISMA">
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="pacientes.html">
+
+                <i class="fa-solid fa-user-group"></i>
+
+                Pacientes
+
+            </a>
+
+            <a href="medicos.html">
+
+                <i class="fa-solid fa-user-doctor"></i>
+
+                Médicos
+
+            </a>
+
+            <a href="citas.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Citas
+
+            </a>
+
+            <a href="consultas.html">
+
+                <i class="fa-solid fa-stethoscope"></i>
+
+                Consultas
+
+            </a>
+
+            <a href="tratamientos.html">
+
+                <i class="fa-solid fa-notes-medical"></i>
+
+                Tratamientos
+
+            </a>
+
+            <a href="medicamentos.html">
+
+                <i class="fa-solid fa-pills"></i>
+
+                Medicamentos
+
+            </a>
+
+            <a href="usuarios.html">
+
+                <i class="fa-solid fa-users"></i>
+
+                Usuarios
+
+            </a>
+
+            <a href="reportes.html">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reportes
+
+            </a>
+
+            <a
+                href="configuracion.html"
+                class="active">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Configuración
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <a href="../login.html">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar sesión
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-title">
+
+                <h1>
+
+                    Configuración
+
+                </h1>
+
+                <p>
+
+                    Configuración general del sistema PRISMA.
+
+                </p>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                </button>
+
+                <div class="user-profile">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <div>
+
+                        <strong>
+
+                            Administrador
+
+                        </strong>
+
+                        <small>
+
+                            Administrador General
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+                    <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-title">
+
+                    <h2>
+
+                        Configuración del Sistema
+
+                    </h2>
+
+                    <p>
+
+                        Administre los parámetros generales y preferencias del sistema PRISMA.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- SETTINGS -->
+
+            <section class="settings-grid">
+
+                <!-- INFORMACIÓN -->
+
+                <div class="settings-card">
+
+                    <div class="table-header">
+
+                        <h2>
+
+                            Mi Cuenta
+
+                        </h2>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Usuario
+
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="cuentaUsuario">
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Correo Electrónico
+
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="cuentaCorreo">
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Nueva Contraseña
+
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="cuentaContrasena"
+                                placeholder="Dejar en blanco para no cambiarla">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- SEGURIDAD -->
+
+                <div class="settings-card">
+
+                    <div class="table-header">
+
+                        <h2>
+
+                            Seguridad
+
+                        </h2>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Contraseña mínima
+
+                        </label>
+
+                        <select>
+
+                            <option>
+
+                                8 caracteres
+
+                            </option>
+
+                            <option>
+
+                                10 caracteres
+
+                            </option>
+
+                            <option>
+
+                                12 caracteres
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Tiempo de sesión
+
+                        </label>
+
+                        <select>
+
+                            <option>
+
+                                15 minutos
+
+                            </option>
+
+                            <option>
+
+                                30 minutos
+
+                            </option>
+
+                            <option>
+
+                                60 minutos
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- NOTIFICACIONES -->
+
+                <div class="settings-card">
+
+                    <div class="table-header">
+
+                        <h2>
+
+                            Notificaciones
+
+                        </h2>
+
+                    </div>
+
+                    <div class="setting-option">
+
+                        <label>
+
+                            Correo electrónico
+
+                        </label>
+
+                        <input
+                            type="checkbox"
+                            checked>
+
+                    </div>
+
+                    <div class="setting-option">
+
+                        <label>
+
+                            Recordatorios de citas
+
+                        </label>
+
+                        <input
+                            type="checkbox"
+                            checked>
+
+                    </div>
+
+                    <div class="setting-option">
+
+                        <label>
+
+                            Alertas del sistema
+
+                        </label>
+
+                        <input
+                            type="checkbox">
+
+                    </div>
+
+                </div>
+
+                <!-- SISTEMA -->
+
+                <div class="settings-card">
+
+                    <div class="table-header">
+
+                        <h2>
+
+                            Sistema
+
+                        </h2>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Idioma
+
+                        </label>
+
+                        <select>
+
+                            <option>
+
+                                Español
+
+                            </option>
+
+                            <option>
+
+                                English
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Zona Horaria
+
+                        </label>
+
+                        <select>
+
+                            <option>
+
+                                GMT -06:00 Costa Rica
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- BOTONES -->
+
+            <section class="page-actions">
+
+                <button
+                    class="btn btn-secondary">
+
+                    Restaurar Valores
+
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    id="btnGuardarConfiguracion">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Guardar Configuración
+
+                </button>
+
+            </section>
+
+                        <!-- FOOTER -->
+
+            <footer class="dashboard-footer">
+
+                <p>
+
+                    © 2026 PRISMA | Sistema de Gestión y Consolidación de Información Clínica
+
+                </p>
+
+                <span>
+
+                    Versión 1.0.0
+
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../assets/js/configuracion.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+

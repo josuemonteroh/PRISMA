@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>PRISMA | Pacientes</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="../assets/css/reset.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/variables.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/style.css">
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <!-- LOGO -->
+
+            <div class="sidebar-logo">
+
+                <img
+                    src="../assets/img/logo.png"
+                    alt="PRISMA">
+
+            </div>
+
+            <!-- MENU -->
+
+            <nav class="sidebar-menu">
+
+                <a href="dashboard.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+
+                        Dashboard
+
+                    </span>
+
+                </a>
+
+                <a
+                    href="pacientes.html"
+                    class="active">
+
+                    <i class="fa-solid fa-user-group"></i>
+
+                    <span>
+
+                        Pacientes
+
+                    </span>
+
+                </a>
+
+                <a href="medicos.html">
+
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <span>
+
+                        Médicos
+
+                    </span>
+
+                </a>
+
+                <a href="citas.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+
+                        Citas
+
+                    </span>
+
+                </a>
+
+                <a href="consultas.html">
+
+                    <i class="fa-solid fa-stethoscope"></i>
+
+                    <span>
+
+                        Consultas
+
+                    </span>
+
+                </a>
+
+                <a href="tratamientos.html">
+
+                    <i class="fa-solid fa-notes-medical"></i>
+
+                    <span>
+
+                        Tratamientos
+
+                    </span>
+
+                </a>
+
+                <a href="medicamentos.html">
+
+                    <i class="fa-solid fa-pills"></i>
+
+                    <span>
+
+                        Medicamentos
+
+                    </span>
+
+                </a>
+
+                <a href="usuarios.html">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>
+
+                        Usuarios
+
+                    </span>
+
+                </a>
+
+                <a href="reportes.html">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    <span>
+
+                        Reportes
+
+                    </span>
+
+                </a>
+
+                <a href="configuracion.html">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>
+
+                        Configuración
+
+                    </span>
+
+                </a>
+
+            </nav>
+
+            <!-- FOOTER -->
+
+            <div class="sidebar-footer">
+
+                <a href="../login.html">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>
+
+                        Cerrar sesión
+
+                    </span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+        <!-- MAIN -->
+
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-title">
+
+                    <h1>
+
+                        Pacientes
+
+                    </h1>
+
+                    <p>
+
+                        Gestión y administración de pacientes registrados.
+
+                    </p>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <button class="notification-btn">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                    </button>
+
+                    <div class="user-profile">
+
+                        <i class="fa-solid fa-circle-user"></i>
+
+                        <div>
+
+                            <strong>
+
+                                Administrador
+
+                            </strong>
+
+                            <small>
+
+                                Administrador General
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- CONTINÚA EN LA PARTE 2 -->
+
+                        <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-title">
+
+                    <h2>
+
+                        Administración de Pacientes
+
+                    </h2>
+
+                    <p>
+
+                        Consulte, registre y administre la información de los pacientes del sistema.
+
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn btn-primary"
+                    id="btnNuevoPaciente">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    <span>
+
+                        Nuevo Paciente
+
+                    </span>
+
+                </button>
+
+            </section>
+
+            <!-- FILTERS -->
+
+            <section class="filters-card">
+
+                <div class="filter-group">
+
+                    <label for="buscarPaciente">
+
+                        Buscar
+
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="buscarPaciente"
+                            placeholder="Buscar por nombre, cédula o teléfono">
+
+                    </div>
+
+                </div>
+
+                <div class="filter-group">
+
+                    <label>
+
+                        Acciones
+
+                    </label>
+
+                    <button
+                        class="btn btn-secondary"
+                        id="btnLimpiar">
+
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
+
+                        <span>
+
+                            Limpiar
+
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- PATIENTS TABLE -->
+
+            <section class="table-container">
+
+                <div class="table-header">
+
+                    <h2>
+
+                        Pacientes Registrados
+
+                    </h2>
+
+                    <span>
+
+                        248 registros
+
+                    </span>
+
+                </div>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Paciente</th>
+
+                            <th>Cédula</th>
+
+                            <th>Teléfono</th>
+
+                            <th>Correo</th>
+
+                            <th>Sexo</th>
+
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaPacientes">
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <!-- PAGINATION -->
+
+            <section class="pagination">
+
+                <button class="btn-secondary">
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </button>
+
+                <span>
+
+                    Página 1 de 10
+
+                </span>
+
+                <button class="btn-secondary">
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+            </section>
+
+            <!-- MODAL NUEVO PACIENTE -->
+
+            <div
+                class="modal"
+                id="patientModal">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h2>
+
+                            Nuevo Paciente
+
+                        </h2>
+
+                        <button
+                            class="modal-close">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+                    <form
+                        id="patientForm">
+
+                                            <div class="form-grid">
+
+                            <div class="input-group">
+
+                                <label for="nombre">
+
+                                    Nombre
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                    <input
+                                        type="text"
+                                        id="nombre"
+                                        placeholder="Ingrese el nombre"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="apellido">
+
+                                    Apellidos
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                    <input
+                                        type="text"
+                                        id="apellido"
+                                        placeholder="Ingrese los apellidos"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="cedula">
+
+                                    Cédula
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-id-card"></i>
+
+                                    <input
+                                        type="text"
+                                        id="cedula"
+                                        placeholder="1-1234-5678"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="telefono">
+
+                                    Teléfono
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-phone"></i>
+
+                                    <input
+                                        type="tel"
+                                        id="telefono"
+                                        placeholder="8888-8888">
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="correo">
+
+                                    Correo
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-envelope"></i>
+
+                                    <input
+                                        type="email"
+                                        id="correo"
+                                        placeholder="correo@ejemplo.com">
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="fechaNacimiento">
+
+                                    Fecha de nacimiento
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="fa-solid fa-calendar"></i>
+
+                                    <input
+                                        type="date"
+                                        id="fechaNacimiento">
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="sexo">
+
+                                    Sexo
+
+                                </label>
+
+                                <select id="sexo">
+
+                                    <option value="">
+
+                                        Seleccione
+
+                                    </option>
+
+                                    <option value="M">
+
+                                        Masculino
+
+                                    </option>
+
+                                    <option value="F">
+
+                                        Femenino
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="input-group full-width">
+
+                                <label for="direccion">
+
+                                    Dirección
+
+                                </label>
+
+                                <textarea
+                                    id="direccion"
+                                    rows="3"
+                                    placeholder="Ingrese la dirección del paciente"></textarea>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button
+                                type="button"
+                                class="btn btn-secondary modal-close">
+
+                                Cancelar
+
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary">
+
+                                <i class="fa-solid fa-floppy-disk"></i>
+
+                                <span>
+
+                                    Guardar Paciente
+
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <footer class="dashboard-footer">
+
+                <p>
+
+                    © 2026 PRISMA | Sistema de Gestión y Consolidación de Información Clínica
+
+                </p>
+
+                <span>
+
+                    Versión 1.0.0
+
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="../assets/js/session-guard.js"></script>
+    <script src="../assets/js/pacientes.js"></script>
+
+</body>
+
+</html>
+
+            
+
+
+
+

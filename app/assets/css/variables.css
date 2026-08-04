@@ -1,0 +1,81 @@
+/* VARIABLES */
+
+:root{
+
+    /* COLORS */
+
+    --primary:#0B1F3A;
+    --primary-light:#153A63;
+    --secondary:#2D5B8F;
+    --accent:#3387F3;
+
+    --background:#F5F7FA;
+    --surface:#FFFFFF;
+
+    --text:#1F2937;
+    --text-light:#6B7280;
+
+    --border:#E5E7EB;
+
+    --success:#22C55E;
+    --warning:#F59E0B;
+    --danger:#EF4444;
+
+    /* TYPOGRAPHY */
+
+    --font-family:"Inter",sans-serif;
+
+    --font-xs:.75rem;
+    --font-sm:.875rem;
+    --font-md:1rem;
+    --font-lg:1.25rem;
+    --font-xl:1.75rem;
+    --font-xxl:2.5rem;
+
+    /* FONT WEIGHT */
+
+    --weight-light:300;
+    --weight-regular:400;
+    --weight-medium:500;
+    --weight-semibold:600;
+    --weight-bold:700;
+
+    /* SPACING */
+
+    --space-xs:.25rem;
+    --space-sm:.5rem;
+    --space-md:1rem;
+    --space-lg:1.5rem;
+    --space-xl:2rem;
+    --space-xxl:3rem;
+
+    /* BORDER RADIUS */
+
+    --radius-sm:8px;
+    --radius-md:12px;
+    --radius-lg:18px;
+    --radius-xl:24px;
+
+    /* SHADOWS */
+
+    --shadow-sm:0 2px 8px rgba(0,0,0,.05);
+    --shadow-md:0 8px 20px rgba(0,0,0,.08);
+    --shadow-lg:0 12px 35px rgba(0,0,0,.12);
+
+    /* TRANSITIONS */
+
+    --transition:.30s ease;
+
+    /* COMPONENTS */
+
+    --input-height:56px;
+    --button-height:56px;
+    --card-padding:2rem;
+
+    /* LAYOUT */
+
+    --sidebar-width:260px;
+    --topbar-height:70px;
+    --container-width:1200px;
+
+}

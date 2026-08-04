@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>PRISMA | Dashboard</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="../assets/css/reset.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/variables.css">
+
+    <link rel="stylesheet"
+        href="../assets/css/style.css">
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <!-- LOGO -->
+
+            <div class="sidebar-logo">
+
+                <img
+                    src="../assets/img/logo.png"
+                    alt="PRISMA">
+
+            </div>
+
+            <!-- MENU -->
+
+            <nav class="sidebar-menu">
+
+                <a
+                    href="dashboard.html"
+                    class="active">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+
+                        Dashboard
+
+                    </span>
+
+                </a>
+
+                <a href="pacientes.html">
+
+                    <i class="fa-solid fa-user-group"></i>
+
+                    <span>
+
+                        Pacientes
+
+                    </span>
+
+                </a>
+
+                <a href="medicos.html">
+
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <span>
+
+                        Médicos
+
+                    </span>
+
+                </a>
+
+                <a href="citas.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+
+                        Citas
+
+                    </span>
+
+                </a>
+
+                <a href="consultas.html">
+
+                    <i class="fa-solid fa-stethoscope"></i>
+
+                    <span>
+
+                        Consultas
+
+                    </span>
+
+                </a>
+
+                <a href="tratamientos.html">
+
+                    <i class="fa-solid fa-notes-medical"></i>
+
+                    <span>
+
+                        Tratamientos
+
+                    </span>
+
+                </a>
+
+                <a href="medicamentos.html">
+
+                    <i class="fa-solid fa-pills"></i>
+
+                    <span>
+
+                        Medicamentos
+
+                    </span>
+
+                </a>
+
+                <a href="usuarios.html">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>
+
+                        Usuarios
+
+                    </span>
+
+                </a>
+
+                <a href="reportes.html">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    <span>
+
+                        Reportes
+
+                    </span>
+
+                </a>
+
+                <a href="configuracion.html">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>
+
+                        Configuración
+
+                    </span>
+
+                </a>
+
+            </nav>
+
+            <!-- FOOTER -->
+
+            <div class="sidebar-footer">
+
+                <a href="../login.html" id="btnLogout">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>
+
+                        Cerrar sesión
+
+                    </span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-content">
+        
+                    <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-title">
+
+                    <h1>
+
+                        Dashboard
+
+                    </h1>
+
+                    <p>
+
+                        Sistema Integral de Gestión Clínica PRISMA
+
+                    </p>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <button class="notification-btn">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                    </button>
+
+                    <div class="user-profile">
+
+                        <i class="fa-solid fa-circle-user"></i>
+
+                        <div>
+
+                            <strong>
+
+                                Administrador
+
+                            </strong>
+
+                            <small>
+
+                                Administrador General
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- HERO -->
+
+            <section class="welcome-card">
+
+                <div class="welcome-left">
+
+                    <span class="welcome-tag">
+
+                        PANEL ADMINISTRATIVO
+
+                    </span>
+
+                    <h2>
+
+                        Bienvenido nuevamente.
+
+                    </h2>
+
+                    <p>
+
+                        Supervise la actividad clínica, gestione pacientes,
+                        médicos, citas y consulte los principales indicadores
+                        del sistema PRISMA desde un único panel.
+
+                    </p>
+
+                </div>
+
+                <div class="welcome-right">
+
+                    <div class="hero-card">
+
+                        <div class="hero-icon">
+
+                            <i class="fa-solid fa-hospital"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+
+                                Estado del Sistema
+
+                            </span>
+
+                            <strong>
+
+                                Operativo
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="hero-card">
+
+                        <div class="hero-icon">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+
+                                Fecha
+
+                            </span>
+
+                            <strong id="currentDate">
+                                
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- INDICADORES -->
+
+            <section class="cards">
+
+                <article class="dashboard-card">
+
+                    <i class="fa-solid fa-user-group"></i>
+
+                    <h3>
+
+                        Pacientes
+
+                    </h3>
+
+                    <span>
+
+                        248
+
+                    </span>
+
+                    <small>
+
+                        Registrados
+
+                    </small>
+
+                </article>
+
+                <article class="dashboard-card">
+
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <h3>
+
+                        Médicos
+
+                    </h3>
+
+                    <span>
+
+                        32
+
+                    </span>
+
+                    <small>
+
+                        Activos
+
+                    </small>
+
+                </article>
+
+                <article class="dashboard-card">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <h3>
+
+                        Citas
+
+                    </h3>
+
+                    <span>
+
+                        54
+
+                    </span>
+
+                    <small>
+
+                        Programadas Hoy
+
+                    </small>
+
+                </article>
+
+                <article class="dashboard-card">
+
+                    <i class="fa-solid fa-notes-medical"></i>
+
+                    <h3>
+
+                        Tratamientos
+
+                    </h3>
+
+                    <span>
+
+                        89
+
+                    </span>
+
+                    <small>
+
+                        En seguimiento
+
+                    </small>
+
+                </article>
+
+                <article class="dashboard-card">
+
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                    <h3>
+
+                        Facturación
+
+                    </h3>
+
+                    <span>
+
+                        ₡4.8 M
+
+                    </span>
+
+                    <small>
+
+                        Mes actual
+
+                    </small>
+
+                </article>
+
+            </section>
+
+            <!-- CONTENIDO PRINCIPAL -->
+
+                       <section class="dashboard-grid">
+
+                <!-- GRÁFICOS -->
+
+                <div class="dashboard-left">
+
+                    <div class="chart-card">
+
+                        <div class="card-header">
+
+                            <h3>
+
+                                Pacientes por Sexo
+
+                            </h3>
+
+                            <span>
+
+                                Año 2026
+
+                            </span>
+
+                        </div>
+
+                        <canvas id="patientsChart"></canvas>
+
+                    </div>
+
+                    <div class="chart-card">
+
+                        <div class="card-header">
+
+                            <h3>
+
+                                Estado de las Citas
+
+                            </h3>
+
+                            <span>
+
+                                Hoy
+
+                            </span>
+
+                        </div>
+
+                        <canvas id="appointmentsChart"></canvas>
+
+                    </div>
+
+                    <!-- TABLA -->
+
+                    <div class="table-container">
+
+                        <div class="table-header">
+
+                            <h2>
+
+                                Citas Recientes
+
+                            </h2>
+
+                            <a href="citas.html">
+
+                                Ver todos
+
+                            </a>
+
+                        </div>
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Paciente</th>
+
+                                    <th>Médico</th>
+
+                                    <th>Fecha</th>
+
+                                    <th>Estado</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!-- PANEL DERECHO -->
+
+                <aside class="dashboard-right">
+
+                    <div class="activity-panel">
+
+                        <h3>
+
+                            Actividad Reciente
+
+                        </h3>
+
+                        <div class="activity-item">
+
+                            <i class="fa-solid fa-user-plus"></i>
+
+                            <div>
+
+                                <strong>
+
+                                    Nuevo paciente registrado
+
+                                </strong>
+
+                                <p>
+
+                                    Hace 10 minutos
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="activity-item">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                            <div>
+
+                                <strong>
+
+                                    Cita confirmada
+
+                                </strong>
+
+                                <p>
+
+                                    Consultorio 03
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="activity-item">
+
+                            <i class="fa-solid fa-stethoscope"></i>
+
+                            <div>
+
+                                <strong>
+
+                                    Consulta finalizada
+
+                                </strong>
+
+                                <p>
+
+                                    Medicina General
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="activity-item">
+
+                            <i class="fa-solid fa-prescription-bottle-medical"></i>
+
+                            <div>
+
+                                <strong>
+
+                                    Tratamiento actualizado
+
+                                </strong>
+
+                                <p>
+
+                                    Paciente Juan Pérez
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="activity-item">
+
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                            <div>
+
+                                <strong>
+
+                                    Pago registrado
+
+                                </strong>
+
+                                <p>
+
+                                    Factura #000215
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </section>
+            
+                        <!-- FOOTER -->
+
+            <footer class="dashboard-footer">
+
+                <p>
+
+                    © 2026 PRISMA | Sistema de Gestión y Consolidación de Información Clínica
+
+                </p>
+
+                <span>
+
+                    Versión 1.0.0
+
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- CHART.JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- SEGURIDAD DE SESIÓN -->
+
+    <script src="../assets/js/session-guard.js"></script>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../assets/js/dashboard.js"></script>
+
+</body>
+
+</html>
+            
+
+        
