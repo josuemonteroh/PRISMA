@@ -1615,18 +1615,31 @@ END;
 ---------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE SP_LISTAR_TRATAMIENTO(
-
     P_CURSOR OUT SYS_REFCURSOR
-
 )
 AS
 BEGIN
-
     OPEN P_CURSOR FOR
-        SELECT *
-        FROM TRATAMIENTO
-        ORDER BY ID_TRATAMIENTO;
+        SELECT
+            T.ID_TRATAMIENTO,
+            T.ID_CONSULTA,
+            T.ID_MEDICAMENTO,
 
+            'Consulta #' || T.ID_CONSULTA AS CONSULTA,
+
+            M.NOMBRE AS MEDICAMENTO,
+
+            T.DOSIS,
+            T.FRECUENCIA,
+            T.DURACION_DIAS,
+            TO_CHAR(T.FECHA_INICIO, 'YYYY-MM-DD') AS FECHA_INICIO
+
+        FROM TRATAMIENTO T
+
+        INNER JOIN MEDICAMENTO M
+            ON T.ID_MEDICAMENTO = M.ID_MEDICAMENTO
+
+        ORDER BY T.FECHA_INICIO DESC;
 END;
 /
 

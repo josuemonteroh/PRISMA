@@ -3,111 +3,276 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const modal = document.getElementById("treatmentModal");
-
     const btnNuevoTratamiento = document.getElementById("btnNuevoTratamiento");
-
     const botonesCerrar = document.querySelectorAll(".modal-close");
-
     const formulario = document.getElementById("treatmentForm");
-
     const buscador = document.getElementById("buscarTratamiento");
+    const tabla = document.getElementById("tablaTratamientos");
+    const BASE = "../assets/backend/tratamientos/";
+    let editandoId = null;
 
-    /* ABRIR MODAL */
-
-    btnNuevoTratamiento.addEventListener("click", () => {
-
-        modal.classList.add("active");
-
-    });
-
-    /*CERRAR MODAL */
-
-    botonesCerrar.forEach((boton) => {
-
-        boton.addEventListener("click", () => {
-
-            modal.classList.remove("active");
-
-            formulario.reset();
-
-        });
-
-    });
-
-    /* CERRAR AL HACER CLICK AFUERA */
-
-    modal.addEventListener("click", (event) => {
-
-        if(event.target === modal){
-
-            modal.classList.remove("active");
-
-            formulario.reset();
-
-        }
-
-    });
-
-    /*GUARDAR TRATAMIENTO */
-
-    formulario.addEventListener("submit", (event) => {
-
-        event.preventDefault();
-
-        alert("Tratamiento registrado correctamente.");
-
+    function abrirModalNuevo() {
+        editandoId = null;
         formulario.reset();
 
+        modal.querySelector(".modal-header h2").textContent =
+            "Nuevo Tratamiento";
+
+        modal.classList.add("active");
+    }
+
+    function cerrarModal() {
         modal.classList.remove("active");
+        formulario.reset();
+        editandoId = null;
+    }
 
-    });
+    function pintarFila(tratamiento) {
 
-    /* BUSCADOR */
+        const tr = document.createElement("tr");
 
-    buscador.addEventListener("keyup", () => {
+        tr.dataset.tratamiento = JSON.stringify(tratamiento);
 
-        const texto = buscador.value.toLowerCase();
+        tr.innerHTML = `
+        <td>${String(tratamiento.id).padStart(3, "0")}</td>
+        <td>${tratamiento.consulta ?? ""}</td>
+        <td>${tratamiento.medicamento ?? ""}</td>
+        <td>${tratamiento.dosis ?? ""}</td>
+        <td>${tratamiento.frecuencia ?? ""}</td>
+        <td>${tratamiento.duracion_dias} días</td>
+        <td>${tratamiento.fecha_inicio ?? ""}</td>
 
-        document.querySelectorAll("tbody tr").forEach((fila) => {
+        <td class="actions">
+            <button class="action-btn edit">
+                <i class="fa-solid fa-pen"></i>
+            </button>
 
-            fila.style.display = fila.textContent.toLowerCase().includes(texto)
+            <button class="action-btn delete">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </td>
+    `;
 
-                ? ""
+        tr.querySelector(".edit").addEventListener("click", () => {
 
-                : "none";
+            editandoId = tratamiento.id;
 
-        });
+            document.getElementById("idConsulta").value =
+                tratamiento.id_consulta ?? "";
 
-    });
+            document.getElementById("idMedicamento").value =
+                tratamiento.id_medicamento ?? "";
 
-    /*EDITAR*/
+            document.getElementById("dosis").value =
+                tratamiento.dosis ?? "";
 
-    document.querySelectorAll(".edit").forEach((boton) => {
+            document.getElementById("frecuencia").value =
+                tratamiento.frecuencia ?? "";
 
-        boton.addEventListener("click", () => {
+            document.getElementById("duracionDias").value =
+                tratamiento.duracion_dias ?? "";
+
+            document.getElementById("fechaInicio").value =
+                tratamiento.fecha_inicio ?? "";
+
+            modal.querySelector(".modal-header h2").textContent =
+                "Editar Tratamiento";
 
             modal.classList.add("active");
-
         });
 
-    });
+        tr.querySelector(".delete").addEventListener("click", async () => {
 
-    /* ELIMINAR */
+            const confirmar = confirm(
+                "¿Desea eliminar este tratamiento?"
+            );
 
-    document.querySelectorAll(".delete").forEach((boton) => {
+            if (!confirmar) {
+                return;
+            }
 
-        boton.addEventListener("click", () => {
+            try {
 
-            const confirmar = confirm("¿Desea eliminar este tratamiento?");
+                const respuesta = await fetch(BASE + "eliminar.php", {
+                    method: "POST",
+                    credentials: "same-origin",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        id: tratamiento.id
+                    })
+                });
 
-            if(confirmar){
+                const resultado = await respuesta.json();
 
-                boton.closest("tr").remove();
+                if (!resultado.success) {
+                    alert(
+                        resultado.message ||
+                        "No se pudo eliminar el tratamiento."
+                    );
+                    return;
+                }
+
+                alert("Tratamiento eliminado correctamente.");
+
+                await cargarTratamientos();
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Error de conexión al eliminar el tratamiento."
+                );
 
             }
 
         });
 
+
+        tabla.appendChild(tr);
+    }
+
+    async function cargarTratamientos() {
+
+        tabla.innerHTML = "";
+
+        try {
+
+            const respuesta = await fetch(BASE + "listar.php", {
+                credentials: "same-origin"
+            });
+
+            const resultado = await respuesta.json();
+
+            if (!resultado.success) {
+
+                tabla.innerHTML = `
+                    <tr>
+                        <td colspan="8">
+                            ${resultado.message || "No se pudieron cargar los tratamientos."}
+                        </td>
+                    </tr>
+                `;
+
+                return;
+            }
+
+            if (!resultado.data || resultado.data.length === 0) {
+
+                tabla.innerHTML = `
+                    <tr>
+                        <td colspan="8">
+                            No hay tratamientos registrados.
+                        </td>
+                    </tr>
+                `;
+
+                return;
+            }
+
+            resultado.data.forEach(pintarFila);
+
+        } catch (error) {
+
+            console.error(error);
+
+            tabla.innerHTML = `
+                <tr>
+                    <td colspan="8">
+                        Error de conexión con el servidor.
+                    </td>
+                </tr>
+            `;
+        }
+    }
+    formulario.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const payload = {
+            id_consulta: parseInt(document.getElementById("idConsulta").value),
+            id_medicamento: parseInt(document.getElementById("idMedicamento").value),
+            dosis: document.getElementById("dosis").value.trim(),
+            frecuencia: document.getElementById("frecuencia").value.trim(),
+            duracion_dias: parseInt(document.getElementById("duracionDias").value),
+            fecha_inicio: document.getElementById("fechaInicio").value
+        };
+
+        try {
+
+            const endpoint = editandoId
+                ? "actualizar.php"
+                : "guardar.php";
+
+            if (editandoId) {
+                payload.id = editandoId;
+            }
+
+            const respuesta = await fetch(BASE + endpoint, {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const resultado = await respuesta.json();
+
+            if (!resultado.success) {
+                alert(resultado.message || "No se pudo guardar el tratamiento.");
+                return;
+            }
+
+            alert(resultado.message);
+
+            cerrarModal();
+
+            await cargarTratamientos();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Error de conexión con el servidor.");
+
+        }
+
     });
+
+    btnNuevoTratamiento.addEventListener("click", abrirModalNuevo);
+
+    botonesCerrar.forEach((boton) => {
+
+        boton.addEventListener("click", cerrarModal);
+
+    });
+
+    modal.addEventListener("click", (event) => {
+
+        if (event.target === modal) {
+            cerrarModal();
+        }
+
+    });
+
+    buscador.addEventListener("keyup", () => {
+
+        const texto = buscador.value.toLowerCase();
+
+        document.querySelectorAll("#tablaTratamientos tr").forEach((fila) => {
+
+            fila.style.display =
+                fila.textContent.toLowerCase().includes(texto)
+                    ? ""
+                    : "none";
+
+        });
+
+    });
+
+    cargarTratamientos();
 
 });
