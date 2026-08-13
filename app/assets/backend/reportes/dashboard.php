@@ -30,16 +30,16 @@ $consultas           = 0;
 $medicamentos        = 0;
 $facturacionMes      = 0;
 
-oci_bind_by_name($stmtIndicadores, ':pacientes', $pacientes);
-oci_bind_by_name($stmtIndicadores, ':medicos', $medicos);
-oci_bind_by_name($stmtIndicadores, ':citas_hoy', $citasHoy);
-oci_bind_by_name($stmtIndicadores, ':citas_mes', $citasMes);
-oci_bind_by_name($stmtIndicadores, ':citas_pendientes', $citasPendientes);
-oci_bind_by_name($stmtIndicadores, ':tratamientos_activos', $tratamientosActivos);
-oci_bind_by_name($stmtIndicadores, ':tratamientos_fin', $tratamientosFin);
-oci_bind_by_name($stmtIndicadores, ':consultas', $consultas);
-oci_bind_by_name($stmtIndicadores, ':medicamentos', $medicamentos);
-oci_bind_by_name($stmtIndicadores, ':facturacion_mes', $facturacionMes);
+oci_bind_by_name($stmtIndicadores, ':pacientes', $pacientes, 50);
+oci_bind_by_name($stmtIndicadores, ':medicos', $medicos, 50);
+oci_bind_by_name($stmtIndicadores, ':citas_hoy', $citasHoy, 50);
+oci_bind_by_name($stmtIndicadores, ':citas_mes', $citasMes, 50);
+oci_bind_by_name($stmtIndicadores, ':citas_pendientes', $citasPendientes, 50);
+oci_bind_by_name($stmtIndicadores, ':tratamientos_activos', $tratamientosActivos, 50);
+oci_bind_by_name($stmtIndicadores, ':tratamientos_fin', $tratamientosFin, 50);
+oci_bind_by_name($stmtIndicadores, ':consultas', $consultas, 50);
+oci_bind_by_name($stmtIndicadores, ':medicamentos', $medicamentos, 50);
+oci_bind_by_name($stmtIndicadores, ':facturacion_mes', $facturacionMes, 50);
 
 oci_execute($stmtIndicadores);
 oci_free_statement($stmtIndicadores);
