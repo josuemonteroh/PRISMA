@@ -2,9 +2,7 @@ FROM php:8.2-apache
 
 RUN a2enmod rewrite
 
-# ---------------------------------------------------------
 # Dependencias del sistema necesarias para Oracle Instant Client
-# ---------------------------------------------------------
 RUN apt-get update \
     && (apt-get install -y libaio1 || apt-get install -y libaio1t64) \
     && apt-get install -y --no-install-recommends \
@@ -18,11 +16,9 @@ RUN apt-get update \
     ) \
     && ldconfig
 
-# ---------------------------------------------------------
 # Oracle Instant Client (requerido por la extensión oci8)
 # Se usan los enlaces "permanentes" de Oracle, que siempre
 # apuntan a la última versión disponible (no se vencen).
-# ---------------------------------------------------------
 WORKDIR /opt/oracle
 
 RUN wget -q https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip -O basiclite.zip
@@ -41,9 +37,8 @@ RUN cd instantclient \
 
 ENV LD_LIBRARY_PATH="/opt/oracle/instantclient:${LD_LIBRARY_PATH}"
 
-# ---------------------------------------------------------
+
 # Extensión OCI8 (conexión PHP <-> Oracle)
-# ---------------------------------------------------------
 RUN echo "instantclient,/opt/oracle/instantclient" | pecl install oci8 \
     && docker-php-ext-enable oci8
 

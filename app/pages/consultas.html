@@ -23,11 +23,13 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- FONT AWESOME -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -249,7 +251,10 @@
 
                         <i class="fa-solid fa-magnifying-glass"></i>
 
-                        <input type="text" id="buscarConsulta" placeholder="Buscar paciente, médico o diagnóstico">
+                        <input
+                            type="text"
+                            id="buscarConsulta"
+                            placeholder="Buscar paciente, médico o diagnóstico">
 
                     </div>
 
@@ -338,12 +343,19 @@
                     <thead>
 
                         <tr>
+
                             <th>ID</th>
+
                             <th>Paciente</th>
+
                             <th>Médico</th>
+
                             <th>Cita</th>
+
                             <th>Fecha</th>
+
                             <th>Observaciones</th>
+
                             <th>Acciones</th>
 
                         </tr>
@@ -351,7 +363,6 @@
                     </thead>
 
                     <tbody id="tablaConsultas">
-
                     </tbody>
 
                 </table>
@@ -411,13 +422,17 @@
                             <div class="input-group">
 
                                 <label for="paciente">
+
                                     Paciente
+
                                 </label>
 
                                 <select id="paciente" required>
 
                                     <option value="">
+
                                         Seleccione un paciente
+
                                     </option>
 
                                 </select>
@@ -427,40 +442,69 @@
                             <div class="input-group">
 
                                 <label for="idMedico">
+
                                     Médico
+
                                 </label>
 
-                                <input type="number" id="idMedico" min="1" placeholder="Ejemplo: 1" required>
+                                <select id="idMedico" required>
+
+                                    <option value="">
+
+                                        Seleccione un médico
+
+                                    </option>
+
+                                </select>
 
                             </div>
 
                             <div class="input-group">
 
                                 <label for="idCita">
+
                                     Cita
+
                                 </label>
 
-                                <input type="number" id="idCita" min="1" placeholder="Ejemplo: 1" required>
+                                <select id="idCita" required>
+
+                                    <option value="">
+
+                                        Seleccione una cita
+
+                                    </option>
+
+                                </select>
 
                             </div>
 
                             <div class="input-group">
 
                                 <label for="fecha">
+
                                     Fecha
+
                                 </label>
 
-                                <input type="date" id="fecha" required>
+                                <input
+                                    type="date"
+                                    id="fecha"
+                                    required>
 
                             </div>
 
                             <div class="input-group full-width">
 
                                 <label for="observaciones">
+
                                     Observaciones
+
                                 </label>
 
-                                <textarea id="observaciones" rows="4"
+                                <textarea
+                                    id="observaciones"
+                                    rows="4"
                                     placeholder="Observaciones de la consulta"></textarea>
 
                             </div>
@@ -469,16 +513,26 @@
 
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-secondary modal-close">
+                            <button
+                                type="button"
+                                class="btn btn-secondary modal-close">
+
                                 Cancelar
+
                             </button>
 
-                            <button type="submit" class="btn btn-primary">
+                            <button
+                                type="submit"
+                                class="btn btn-primary">
+
                                 <i class="fa-solid fa-floppy-disk"></i>
 
                                 <span>
+
                                     Guardar Consulta
+
                                 </span>
+
                             </button>
 
                         </div>

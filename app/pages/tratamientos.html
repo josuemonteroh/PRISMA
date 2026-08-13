@@ -23,11 +23,13 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- FONT AWESOME -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -249,7 +251,10 @@
 
                         <i class="fa-solid fa-magnifying-glass"></i>
 
-                        <input type="text" id="buscarTratamiento" placeholder="Buscar paciente o tratamiento">
+                        <input
+                            type="text"
+                            id="buscarTratamiento"
+                            placeholder="Buscar paciente o tratamiento">
 
                     </div>
 
@@ -366,12 +371,19 @@
                         <tr>
 
                             <th>ID</th>
+
                             <th>Consulta</th>
+
                             <th>Medicamento</th>
+
                             <th>Dosis</th>
+
                             <th>Frecuencia</th>
+
                             <th>Duración</th>
+
                             <th>Fecha Inicio</th>
+
                             <th>Acciones</th>
 
                         </tr>
@@ -435,121 +447,138 @@
 
                         <div class="form-grid">
 
-    <div class="input-group">
+                            <div class="input-group">
 
-        <label for="idConsulta">
-            Consulta
-        </label>
+                                <label for="idConsulta">
 
-        <input
-            type="number"
-            id="idConsulta"
-            min="1"
-            placeholder="Ejemplo: 1"
-            required
-        >
+                                    Consulta
 
-    </div>
+                                </label>
 
-    <div class="input-group">
+                                <select id="idConsulta" required>
 
-        <label for="idMedicamento">
-            Medicamento
-        </label>
+                                    <option value="">
 
-        <input
-            type="number"
-            id="idMedicamento"
-            min="1"
-            placeholder="Ejemplo: 1"
-            required
-        >
+                                        Seleccione una consulta
 
-    </div>
+                                    </option>
 
-    <div class="input-group">
+                                </select>
 
-        <label for="dosis">
-            Dosis
-        </label>
+                            </div>
 
-        <input
-            type="text"
-            id="dosis"
-            placeholder="Ejemplo: 1 tableta"
-            required
-        >
+                            <div class="input-group">
 
-    </div>
+                                <label for="idMedicamento">
 
-    <div class="input-group">
+                                    Medicamento
 
-        <label for="frecuencia">
-            Frecuencia
-        </label>
+                                </label>
 
-        <input
-            type="text"
-            id="frecuencia"
-            placeholder="Ejemplo: Cada 8 horas"
-            required
-        >
+                                <select id="idMedicamento" required>
 
-    </div>
+                                    <option value="">
 
-    <div class="input-group">
+                                        Seleccione un medicamento
 
-        <label for="duracionDias">
-            Duración en días
-        </label>
+                                    </option>
 
-        <input
-            type="number"
-            id="duracionDias"
-            min="1"
-            placeholder="Ejemplo: 7"
-            required
-        >
+                                </select>
 
-    </div>
+                            </div>
 
-    <div class="input-group">
+                            <div class="input-group">
 
-        <label for="fechaInicio">
-            Fecha de inicio
-        </label>
+                                <label for="dosis">
 
-        <input
-            type="date"
-            id="fechaInicio"
-            required
-        >
+                                    Dosis
 
-    </div>
+                                </label>
 
-</div>
+                                <input
+                                    type="text"
+                                    id="dosis"
+                                    placeholder="Ejemplo: 1 tableta"
+                                    required>
 
-<div class="modal-footer">
+                            </div>
 
-    <button
-        type="button"
-        class="btn btn-secondary modal-close"
-    >
-        Cancelar
-    </button>
+                            <div class="input-group">
 
-    <button
-        type="submit"
-        class="btn btn-primary"
-    >
-        <i class="fa-solid fa-floppy-disk"></i>
+                                <label for="frecuencia">
 
-        <span>
-            Guardar Tratamiento
-        </span>
-    </button>
+                                    Frecuencia
 
-</div>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="frecuencia"
+                                    placeholder="Ejemplo: Cada 8 horas"
+                                    required>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="duracionDias">
+
+                                    Duración en días
+
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="duracionDias"
+                                    min="1"
+                                    placeholder="Ejemplo: 7"
+                                    required>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="fechaInicio">
+
+                                    Fecha de inicio
+
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="fechaInicio"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button
+                                type="button"
+                                class="btn btn-secondary modal-close">
+
+                                Cancelar
+
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary">
+
+                                <i class="fa-solid fa-floppy-disk"></i>
+
+                                <span>
+
+                                    Guardar Tratamiento
+
+                                </span>
+
+                            </button>
+
+                        </div>
+
                     </form>
 
                 </div>

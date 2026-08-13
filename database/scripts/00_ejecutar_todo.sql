@@ -14,5 +14,8 @@ SET DEFINE OFF
 @@06_views.sql
 @@07_packages.sql
 @@08_seed.sql
+@@09_reportes.sql
+@@10_auth.sql
+@@11_cursores.sql
 
 EXIT;
