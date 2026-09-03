@@ -208,7 +208,6 @@ Contains the resources used to configure the development environment with Docker
  
 | Team Member |
 |---|
-| Antony Mora Castro |
 | Emmanuel Rivera Cordero |
 | Josué David Montero Hernández |
 | Matías Camacho Santamaría |
