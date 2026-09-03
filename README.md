@@ -200,7 +200,7 @@ These components allow application logic and data-processing operations to remai
 ## Repository Structure
 
 ```text
-PRISMA-SC504/
+PRISMA/
 │
 ├── app/
 │   └── Web application source code
@@ -285,8 +285,8 @@ PRISMA uses Docker to provide the PHP and Oracle Database development environmen
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/josuemonteroh/PRISMA-SC504.git
-cd PRISMA-SC504
+git clone https://github.com/josuemonteroh/PRISMA.git
+cd PRISMA
 ```
 
 ### 2. Start the containers
